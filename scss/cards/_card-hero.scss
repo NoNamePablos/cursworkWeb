@@ -1,0 +1,60 @@
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 55px;
+    height: 440px;
+    width: 630px;
+    margin-left: auto;
+    margin-right: 80px;
+    @media screen and (max-width: 767px) {
+        height: max-content;
+        width: 100%;
+        height: 100%;
+    }
+    &-container {
+        width: 100%;
+        & img {
+            display: none;
+            @media screen and (max-width: 767px) {
+                display: block;
+                height: 300px;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    background-color: var(--color-white);
+    &__title {
+        font-family: 'Clash Display', Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 45px;
+        color: var(--color-title);
+    }
+    &__description {
+        margin-top: 10px;
+        font-family: 'Satoshi', Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+        color: #5B5676;
+    }
+    &__button {
+        display: block;
+        padding: 16px 32px;
+        width:auto ;
+        max-width: max-content;
+        height: 56px;
+        text-transform: uppercase;
+        transition: opacity .4s;
+        &:hover {
+            transition: opacity .4s;
+            opacity: 0.8;
+        }
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+}

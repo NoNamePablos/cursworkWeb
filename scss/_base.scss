@@ -1,0 +1,76 @@
+@import "./fonts";
+:root {
+    --dark-primary: #2A254B;
+    --primary: #4E4D93;
+    --light-grey: #F9F9F9;
+    --grey:#f0e5e5;
+    --border-grey: #EBE8F4;
+    --color-white: #FFFFFF;
+    --border-dark: #CAC6DA;
+    --color-title: #22202E;
+    --danger:#dc130d;
+}
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+    margin: 0;
+}
+li {
+    padding: 0;
+    margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: var(--dark-primary);
+}
+body {
+    font-family: 'Satoshi', sans-serif;
+    margin: 0; // font-family: 'Clash Display', sans-serif;
+}
+.title-clash {
+    font-family: 'Clash Display', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    &-4 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+    }
+    &-2 {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 37px;
+    }
+}
+.title-satoshi {
+    font-family: 'Satoshi', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    &-body-medium {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+    }
+    &-body-large {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+    }
+}
+.container {
+    max-width: 1440px;
+    margin: auto;
+}

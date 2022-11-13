@@ -1,0 +1,24 @@
+.hero {
+    background-image: url("../assets/img/static/cars.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 700px;
+    @media screen and (max-width: 767px) {
+        background: transparent;
+        height: auto;
+    }
+    display: flex;
+    align-items: center;
+    &__card {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        margin-right: 80px;
+        @media screen and (max-width: 768px) {
+            margin-right: 0;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}

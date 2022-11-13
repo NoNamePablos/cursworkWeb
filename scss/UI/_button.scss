@@ -1,0 +1,21 @@
+.button {
+    appearance: none;
+    border:none;
+    height: 56px;
+    padding: 16px 32px;
+    color: var(--color-white);
+    transition: opacity .4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 6px;
+    &:hover{
+        transition: opacity .4s;
+        opacity: 0.8;
+    }
+    &-danger{
+        background-color: var(--danger);
+        border-color: var(--danger);
+    }
+}
