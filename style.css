@@ -981,6 +981,56 @@ ul {
   border-bottom: initial;
 }
 
+.detail__container {
+  display: flex;
+  flex-direction: column;
+}
+.detail-body > * + * {
+  margin-top: 50px;
+}
+.detail-body__item {
+  border: 1px solid var(--border-grey);
+  padding: 50px;
+}
+.detail-body__item-description {
+  font-family: "Clash Display", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--dark-primary);
+  margin-top: 50px;
+}
+.detail-body__item-list {
+  margin-top: 50px;
+}
+.detail-body__item-list > * + * {
+  margin-top: 20px;
+}
+.detail-body__item-list li {
+  font-family: "Satoshi", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  list-style: none !important;
+  border-bottom: 1px dotted #ccc;
+  height: auto;
+  margin-bottom: 0;
+  font-size: 13px;
+  padding-left: 0 !important;
+  content: none !important;
+  display: flex;
+  justify-content: space-between;
+}
+.detail-body__item-list li span:nth-of-type(1) {
+  font-weight: 400;
+  color: var(--dark-primary);
+}
+.detail-body__item-list li span, .detail-body__item-list li b {
+  position: relative;
+  bottom: -5px;
+  background-color: #fff;
+  z-index: 2;
+}
+
 .card-info {
   display: flex;
   flex-direction: column;
