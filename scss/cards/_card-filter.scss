@@ -1,0 +1,23 @@
+.filter-card{
+  	width: 100%;
+  	padding: 13px 18px 16px;
+  	border-bottom: 1px solid var(--grey);
+  &__header{
+	height: auto;
+	display: flex;
+  }
+  &__title{
+	padding-right: 50px;
+  }
+  &__ico{
+	height: 100%;
+	width: 20px;
+  }
+  &.active{
+	& .filter-card__ico{
+	 & svg{
+	   transform: rotate(180deg);
+	 }
+	}
+  }
+}

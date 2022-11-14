@@ -1,0 +1,19 @@
+.catalog{
+	background-color: var(--color-white);
+  	&-container{
+	  display: grid;
+	  grid-template-columns: 300px 1fr;
+	  grid-column-gap: 30px;
+	  margin-top: 30px;
+	}
+  &-form{
+	border-radius: 6px;
+	border: 1px solid var(--grey);
+	background-color: var(--color-white);
+	& .filter-card{
+	  &:last-child{
+		border-bottom: initial;
+	  }
+	}
+  }
+}
