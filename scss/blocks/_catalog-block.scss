@@ -5,6 +5,21 @@
 	  grid-template-columns: 300px 1fr;
 	  grid-column-gap: 30px;
 	  margin-top: 30px;
+	  margin-bottom: 100px;
+	}
+	&-grid{
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		&__item{
+			width: 33.3333333333%;
+			background-color: #ffffff;
+			border: 1px solid transparent;
+			box-shadow: 0 0 0 1px #eee;
+		}
+	}
+	&-pagination{
+		margin-top: 50px;
 	}
   &-form{
 	border-radius: 6px;

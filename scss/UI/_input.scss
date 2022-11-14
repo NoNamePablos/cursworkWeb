@@ -8,8 +8,7 @@
     width: 100%;
     
     &::placeholder{
-    color:var(--color-white);
-
+        color: var(--placeholder-grey);
     }
     &-label{
         width: 100%;

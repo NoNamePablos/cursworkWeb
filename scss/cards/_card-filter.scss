@@ -5,19 +5,54 @@
   &__header{
 	height: auto;
 	display: flex;
+    justify-content: space-between;
+  }
+  & .input{
+	padding:17px;
+	outline: none;
   }
   &__title{
 	padding-right: 50px;
   }
+  &__body{
+	margin-top: 20px;
+	display: none;
+  }
+  &__wrapper{
+	&>*+*{
+		margin-left: 10px;
+	}
+  }
+  &__list{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height:100px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+  }
   &__ico{
-	height: 100%;
-	width: 20px;
+	font-size: 15px;
+    line-height: 10px;
+    padding: 0 5px;
+	transition: background-color 0.3s ease-in-out;
+	border-radius: 4px;
+	&:hover{
+		background-color: var(--grey);
+		transition: background-color 0.3s ease-in-out;
+	}
+  }
+  &-flex{
+	display: flex;
   }
   &.active{
 	& .filter-card__ico{
 	 & svg{
 	   transform: rotate(180deg);
 	 }
+	}
+	& .filter-card__body{
+		display: block;
 	}
   }
 }
