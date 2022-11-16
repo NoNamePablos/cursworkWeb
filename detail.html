@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-    />
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./style.css" />
     <title>kurs</title>
   </head>
@@ -15,30 +14,33 @@
     <div class="container">
       <header class="header">
         <div class="header__top">
-          <div class="header__search header-left">
-            <img src="./assets/img/UI/Search.svg" alt="Search" />
-          </div>
           <a href=""><h1 class="header__title">Avion</h1></a>
+          <div class="header__list">
+            <a href="element.path" class="header__list-link">Каталог</a>
+          </div>
           <div class="header__top-right">
             <a href="" class="header__cart">
               <img src="./assets/img/UI/Shopping--cart.svg" alt="Cart" />
             </a>
-            <a href="" class="header__user">
-              <img src="./assets/img/UI/User--avatar.svg" alt="User" />
-            </a>
-          </div>
-        </div>
-        <div class="header__bottom">
-          <div class="header__list">
-            <a href="element.path" class="header__list-link"
-              >тестовая страница</a
-            >
-            <a href="element.path" class="header__list-link"
-              >тестовая страница</a
-            >
-            <a href="element.path" class="header__list-link"
-              >тестовая страница</a
-            >
+            <div class="header__user-container">
+              <a href="" class="header__user js-popup">
+                <img src="./assets/img/UI/User--avatar.svg" alt="User" />
+              </a>
+            </div>
+            <ul class="header__user-menu js-mobile">
+              <li class="header__user-menu-item header__user-menu-admin">
+                <a href="" class="header__user-menu-link">Админка</a>
+              </li>
+              <li class="header__user-menu-item header__user-menu-mobile">
+                <a href="" class="header__user-menu-link">Каталог</a>
+              </li>
+              <li class="header__user-menu-item">
+                <a href="" class="header__user-menu-link">Настройки</a>
+              </li>
+              <li class="header__user-menu-item">
+                <a href="" class="header__user-menu-link">Выход</a>
+              </li>
+            </ul>
           </div>
         </div>
       </header>
@@ -52,31 +54,33 @@
           <section class="detail-body">
             <!-- Detail swiper -->
             <div class="detail-body__item">
-              <div class="detail-body__item-slider card-slider swiper js-slider">
+              <div
+                class="detail-body__item-slider card-slider swiper js-slider">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide card-slider__item ">
-                      <img src="/upload/assets/img/slider-images/img1.jpg">
+                  <div class="swiper-slide card-slider__item">
+                    <img src="/upload/assets/img/slider-images/img1.jpg" />
                   </div>
                   <div class="swiper-slide card-slider__item">
-                      <img src="/upload/assets/img/slider-images/img2.jpg">
-                  </div>
-                  <div class="swiper-slide card-slider__item ">
-                    <img src="/upload/assets/img/slider-images/img1.jpg">
+                    <img src="/upload/assets/img/slider-images/img2.jpg" />
                   </div>
                   <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img2.jpg">
-                  </div>
-                  <div class="swiper-slide card-slider__item ">
-                    <img src="/upload/assets/img/slider-images/img1.jpg">
+                    <img src="/upload/assets/img/slider-images/img1.jpg" />
                   </div>
                   <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img2.jpg">
+                    <img src="/upload/assets/img/slider-images/img2.jpg" />
+                  </div>
+                  <div class="swiper-slide card-slider__item">
+                    <img src="/upload/assets/img/slider-images/img1.jpg" />
+                  </div>
+                  <div class="swiper-slide card-slider__item">
+                    <img src="/upload/assets/img/slider-images/img2.jpg" />
                   </div>
                 </div>
-                <div class="swiper-button-next" ></div>
-                <div class="swiper-button-prev " ></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination card-slider__pagination">
-                    <span class="swiper-pagination-current">1</span> / <span class="swiper-pagination-total">9</span>
+                  <span class="swiper-pagination-current">1</span> /
+                  <span class="swiper-pagination-total">9</span>
                 </div>
               </div>
             </div>
@@ -141,20 +145,21 @@
             </div>
           </section>
           <aside class="detail-payment">
-              <div class="detail-payment__container">
-                <div class="detail-payment-price">
-                  <span>6 390 000</span>
-                  <span>₽</span>
-                </div>
-                <div class="detail-payment-availabile">
-                  В наличие
-                </div>
-                <div class="detail-payment-buttons">
-                  <button class="button button-no-border button-primary "> Добавить в избранное</button>
-                  <button class="button button-no-border button-dark-purple "> Смотреть отзывыв</button>
-
-                </div>
+            <div class="detail-payment__container">
+              <div class="detail-payment-price">
+                <span>6 390 000</span>
+                <span>₽</span>
               </div>
+              <div class="detail-payment-availabile">В наличие</div>
+              <div class="detail-payment-buttons">
+                <button class="button button-no-border button-primary">
+                  Добавить в избранное
+                </button>
+                <button class="button button-no-border button-dark-purple">
+                  Смотреть отзывыв
+                </button>
+              </div>
+            </div>
           </aside>
         </div>
       </div>

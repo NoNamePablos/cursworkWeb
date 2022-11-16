@@ -20,3 +20,16 @@ if(document.querySelector(".js-slider")){
         },
     });
 }
+
+if(document.querySelector(".js-popup")){
+    const mobilePopup=document.querySelector(".js-popup");
+    const mobileMenu=document.querySelector(".js-mobile");
+    if(!mobilePopup.classList.contains("js-auth")){
+        mobilePopup.addEventListener("click",(e)=>{
+            e.preventDefault();
+            mobileMenu.classList.toggle("open");
+            document.body.classList.toggle("body-hidden");
+    
+        })
+    }
+}

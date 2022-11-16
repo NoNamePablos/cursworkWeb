@@ -76,3 +76,8 @@ body {
     max-width: 1440px;
     margin: auto;
 }
+.body-hidden{
+    @include vp-1023(){
+        overflow: hidden;
+    }
+}

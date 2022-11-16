@@ -3,13 +3,14 @@ ul{
     padding: 0;
 }
 .header{
-    height: 132px;
+    height: 65px;
     padding: 0 25px;
+    width: 100%;
     & a{
         cursor: pointer;
     }
     &__title{
-        text-align: center;
+        text-align: left;
         color:var( --color-title);
         font-family: 'Clash Display';
         font-style: normal;
@@ -20,14 +21,74 @@ ul{
     &__cart{
         margin-right: 16px;
     }
-    &__search{
-        
+    &__user{
+        &-menu{
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            flex-direction: column;
+            width: 300px;
+            height: max-content;
+            border-radius: 6px;
+            background-color:var(--grey);
+            position: absolute;
+            right: 0;
+            top: 65px;
+            padding: 20px 40px;
+            z-index: 5;
+            &.open{
+                    display: flex;
+                    opacity:1;
+                    visibility: visible;
+            }
+            @include vp-767(){
+                width: calc(100% + 50px);
+                height: 100vh;
+                left: -25px;
+                right: initial;
+         
+            }
+            color:var(--color-title);
+            & a{
+                color:var(--color-title);
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            &-admin{
+                & a{
+                    color:var(--danger);
+                }
+            }
+            &-mobile{
+                display: none;
+                @include vp-767(){
+                    display: block;
+                }
+            }
+            &-auth{
+                display: flex;
+                align-items: center;
+                & h4{
+                    margin-left: 10px;
+                    font-weight: 500;
+                    text-decoration: underline;
+                }
+            }
+            &>*+*{
+                margin-top: 20px;
+            }
+        }
     }
     &__top{
         display: grid;
+        position: relative;
         grid-template-columns: repeat(3,1fr);
+        @include vp-767(){
+            grid-template-columns: repeat(2,1fr);
+        }
         align-items: center;
-        height: 70px;
+        height: 100%;
         width: 100%;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         &-right{
@@ -36,15 +97,13 @@ ul{
             margin-left: auto;
         }
     }
-    &__bottom{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 62px;
-    }
     &__list{
         display: flex;
         align-items: center;
+        justify-content: center;
+        @include vp-767(){
+            display: none;
+        }
         &-link{
             &:not(:last-child){
                 margin-right: 44px;
