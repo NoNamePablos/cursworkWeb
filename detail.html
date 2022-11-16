@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="./style.css" />
     <title>kurs</title>
   </head>
@@ -47,6 +51,35 @@
         <div class="detail__container">
           <section class="detail-body">
             <!-- Detail swiper -->
+            <div class="detail-body__item">
+              <div class="detail-body__item-slider card-slider swiper js-slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide card-slider__item ">
+                      <img src="/upload/assets/img/slider-images/img1.jpg">
+                  </div>
+                  <div class="swiper-slide card-slider__item">
+                      <img src="/upload/assets/img/slider-images/img2.jpg">
+                  </div>
+                  <div class="swiper-slide card-slider__item ">
+                    <img src="/upload/assets/img/slider-images/img1.jpg">
+                  </div>
+                  <div class="swiper-slide card-slider__item">
+                    <img src="/upload/assets/img/slider-images/img2.jpg">
+                  </div>
+                  <div class="swiper-slide card-slider__item ">
+                    <img src="/upload/assets/img/slider-images/img1.jpg">
+                  </div>
+                  <div class="swiper-slide card-slider__item">
+                    <img src="/upload/assets/img/slider-images/img2.jpg">
+                  </div>
+                </div>
+                <div class="swiper-button-next" ></div>
+                <div class="swiper-button-prev " ></div>
+                <div class="swiper-pagination card-slider__pagination">
+                    <span class="swiper-pagination-current">1</span> / <span class="swiper-pagination-total">9</span>
+                </div>
+              </div>
+            </div>
             <!-- Detail info -->
             <div class="detail-body__item">
               <div class="detail-body__item-header">
@@ -99,6 +132,7 @@
                 </p>
               </div>
             </div>
+            <!--Отзывы-->
             <div class="detail-body__item">
               <div class="detail-body__item-header">
                 <p class="title-clash title-clash-2">Отзывы</p>
@@ -106,10 +140,26 @@
               </div>
             </div>
           </section>
-          <aside class="detail-payment"></aside>
+          <aside class="detail-payment">
+              <div class="detail-payment__container">
+                <div class="detail-payment-price">
+                  <span>6 390 000</span>
+                  <span>₽</span>
+                </div>
+                <div class="detail-payment-availabile">
+                  В наличие
+                </div>
+                <div class="detail-payment-buttons">
+                  <button class="button button-no-border button-primary "> Добавить в избранное</button>
+                  <button class="button button-no-border button-dark-purple "> Смотреть отзывыв</button>
+
+                </div>
+              </div>
+          </aside>
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="/assets/js/main.js"></script>
   </body>
 </html>

@@ -7,3 +7,16 @@ if(document.querySelector(".catalog-form")){
         })
     })
 }
+if(document.querySelector(".js-slider")){
+    const slider=document.querySelector(".js-slider");
+    var swiper = new Swiper(slider, {
+        pagination: {
+            el: ".swiper-pagination",
+            type: "fraction",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+}

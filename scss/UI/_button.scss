@@ -14,6 +14,20 @@
         transition: opacity .4s;
         opacity: 0.8;
     }
+    &-dark{
+
+    }
+    &-no-border{
+        border-radius: 0;
+    }
+    &-dark-purple{
+        background-color: var(--color-title);
+        border-color: var(--color-title);
+    }
+    &-primary{
+        background-color: var(--dark-primary);
+        border-color: var(--dark-primary);
+    }
     &-danger{
         background-color: var(--danger);
         border-color: var(--danger);
