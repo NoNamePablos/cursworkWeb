@@ -1,3 +1,8 @@
+<?php
+include 'app/settings/path.php';
+include 'app/settings/db_functions.php';
+include 'app/controllers/users.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,44 +14,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <div class="header__top">
-          <a href=""><h1 class="header__title">Avion</h1></a>
-          <div class="header__list">
-            <a href="element.path" class="header__list-link">Каталог</a>
-          </div>
-          <div class="header__top-right">
-            <a href="" class="header__cart">
-              <img src="./assets/img/UI/Shopping--cart.svg" alt="Cart" />
-            </a>
-            <div class="header__user-container">
-              <a href="" class="header__user js-popup">
-                <img src="./assets/img/UI/User--avatar.svg" alt="User" />
-              </a>
-            </div>
-            <ul class="header__user-menu js-mobile">
-              <div class="header__user-menu-auth">
-                <p class="title-satoshi title-satoshi-body-medium">
-                  Добро пожаловать,
-                </p>
-                <h4 class="title-satoshi title-satoshi-body-large">Admin</h4>
-              </div>
-              <li class="header__user-menu-item header__user-menu-admin">
-                <a href="" class="header__user-menu-link">Админка</a>
-              </li>
-              <li class="header__user-menu-item header__user-menu-mobile">
-                <a href="" class="header__user-menu-link">Каталог</a>
-              </li>
-              <li class="header__user-menu-item">
-                <a href="" class="header__user-menu-link">Настройки</a>
-              </li>
-              <li class="header__user-menu-item">
-                <a href="" class="header__user-menu-link">Выход</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+        <?php include('app/snippets/header.php');?>
       <div class="hero">
         <div class="card-info-container">
           <div class="card-info">
@@ -377,24 +345,7 @@
         </div>
       </div>
       <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-top">
-          <a href="" class="footer-item">Каталог</a>
-          <a href="" class="footer-item">Новости</a>
-          <a href="" class="footer-item">Личный кабинет</a>
-        </div>
-        <div class="footer-bottom">
-          <p class="footer__copyright">Разработал я )</p>
-          <div class="footer-socials">
-            <a href="" class="footer-socials__item">
-              <img
-                src="/assets/img/static/VK_BW_Compact_Logo.png"
-                target="_blank"
-                alt="vk" />
-            </a>
-          </div>
-        </div>
-      </footer>
+        <?php include('app/snippets/footer.php');?>
     </div>
     <script src="/assets/js/main.js"></script>
   </body>

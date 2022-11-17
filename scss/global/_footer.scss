@@ -1,6 +1,8 @@
 .footer{
     padding:60px 80px 25px;
     background-color: var(--dark-primary);
+    margin-top: auto;
+
     &-bottom{
         border-top: 1px solid var(--grey);
         display: flex;

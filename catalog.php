@@ -1,3 +1,7 @@
+<?php
+include 'app/settings/path.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,38 +13,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <div class="header__top">
-          <a href=""><h1 class="header__title">Avion</h1></a>
-          <div class="header__list">
-            <a href="element.path" class="header__list-link">Каталог</a>
-          </div>
-          <div class="header__top-right">
-            <a href="" class="header__cart">
-              <img src="./assets/img/UI/Shopping--cart.svg" alt="Cart" />
-            </a>
-            <div class="header__user-container">
-              <a href="" class="header__user js-popup">
-                <img src="./assets/img/UI/User--avatar.svg" alt="User" />
-              </a>
-            </div>
-            <ul class="header__user-menu js-mobile">
-              <li class="header__user-menu-item header__user-menu-admin">
-                <a href="" class="header__user-menu-link">Админка</a>
-              </li>
-              <li class="header__user-menu-item header__user-menu-mobile">
-                <a href="" class="header__user-menu-link">Каталог</a>
-              </li>
-              <li class="header__user-menu-item">
-                <a href="" class="header__user-menu-link">Настройки</a>
-              </li>
-              <li class="header__user-menu-item">
-                <a href="" class="header__user-menu-link">Выход</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+        <?php include('app/snippets/header.php');?>
       <div class="subheader">
         <h1 class="subheader__title title-clash title-clash-2">
           Продажа автомобилей с пробегом в Москве
@@ -198,118 +171,34 @@
           </aside>
           <section class="catalog-cards">
             <ul class="catalog-grid">
-              <li class="catalog-grid__item">
-                <div class="card-product">
-                  <a href="/" class="card-product__link"></a>
-                  <img
-                    src="/upload/assets/img/cars/car-admin.jpg"
-                    :alt=""
-                    class="card-product__img" />
-                  <div class="card-product__description">
-                    <h4 class="title-clash title-clash-4 card-product__title">
-                      Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD
-                      Coupe 2016
-                    </h4>
-                    <p
-                      class="title-satoshi title-satoshi-body-large card-product__price">
-                      6 390 000 <span>₽/шт</span>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li class="catalog-grid__item">
-                <div class="card-product">
-                  <a href="/" class="card-product__link"></a>
-                  <img
-                    src="/upload/assets/img/cars/car-admin.jpg"
-                    :alt=""
-                    class="card-product__img" />
-                  <div class="card-product__description">
-                    <h4 class="title-clash title-clash-4 card-product__title">
-                      Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD
-                      Coupe 2016
-                    </h4>
-                    <p
-                      class="title-satoshi title-satoshi-body-large card-product__price">
-                      6 390 000 <span>₽/шт</span>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li class="catalog-grid__item">
-                <div class="card-product">
-                  <a href="/" class="card-product__link"></a>
-                  <img
-                    src="/upload/assets/img/cars/car-admin.jpg"
-                    :alt=""
-                    class="card-product__img" />
-                  <div class="card-product__description">
-                    <h4 class="title-clash title-clash-4 card-product__title">
-                      Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD
-                      Coupe 2016
-                    </h4>
-                    <p
-                      class="title-satoshi title-satoshi-body-large card-product__price">
-                      6 390 000 <span>₽/шт</span>
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li class="catalog-grid__item">
-                <div class="card-product">
-                  <a href="/" class="card-product__link"></a>
-                  <img
-                    src="/upload/assets/img/cars/car-admin.jpg"
-                    :alt=""
-                    class="card-product__img" />
-                  <div class="card-product__description">
-                    <h4 class="title-clash title-clash-4 card-product__title">
-                      Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD
-                      Coupe 2016
-                    </h4>
-                    <p
-                      class="title-satoshi title-satoshi-body-large card-product__price">
-                      6 390 000 <span>₽/шт</span>
-                    </p>
-                  </div>
-                </div>
-              </li>
+                <?php for ($i=0;$i<4;$i++):?>
+                <li class="catalog-grid__item">
+                    <div class="card-product">
+                        <a href="<?=BASE_URL?>detail.php?carid=<?=$i?>"  class="card-product__link"></a>
+                        <img
+                                src="/upload/assets/img/cars/car-admin.jpg"
+                                alt=""
+                                class="card-product__img" />
+                        <div class="card-product__description">
+                            <h4 class="title-clash title-clash-4 card-product__title">
+                                Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD
+                                Coupe 2016
+                            </h4>
+                            <p
+                                    class="title-satoshi title-satoshi-body-large card-product__price">
+                                6 390 000 <span>₽/шт</span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <?php endfor;?>
             </ul>
-            <ul class="catalog-pagination pagination-list">
-              <li class="pagination-list__item active">
-                <a href="" class="pagination-list__item-link">1</a>
-              </li>
-              <li class="pagination-list__item">
-                <a href="" class="pagination-list__item-link">2</a>
-              </li>
-              <li class="pagination-list__item">
-                <a href="" class="pagination-list__item-link">3</a>
-              </li>
-              <li class="pagination-list__item">
-                <a href="" class="pagination-list__item-link">4</a>
-              </li>
-            </ul>
+            <!--Pagination-->
+              <?php include("app/snippets/pagination.php") ?>
           </section>
         </div>
       </div>
-      <footer class="footer">
-        <div class="footer-top">
-          <a href="" class="footer-item">Каталог</a>
-          <a href="" class="footer-item">Новости</a>
-          <a href="" class="footer-item">Личный кабинет</a>
-        </div>
-        <div class="footer-bottom">
-          <p class="footer__copyright">Разработал я )</p>
-          <div class="footer-socials">
-            <a href="" class="footer-socials__item">
-              <img
-                src="/assets/img/static/VK_BW_Compact_Logo.png"
-                target="_blank"
-                alt="vk" />
-            </a>
-          </div>
-        </div>
-      </footer>
+        <?php include('app/snippets/header.php');?>
     </div>
     <script src="/assets/js/main.js"></script>
   </body>
