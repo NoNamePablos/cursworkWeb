@@ -1,0 +1,109 @@
+.admin-table {
+  &-control{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-row-gap: 10px;
+
+  }
+  & table {
+	width: 100%;
+	border-spacing: 0;
+	font-family: 'Clash Display','Satoshi', Arial, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+	color: #7E7E7E;
+	@include vp-1023() {
+	  display: block;
+	  max-width: -moz-fit-content;
+	  max-width: fit-content;
+	  margin: 0 auto;
+	  overflow-x: auto;
+	}
+
+
+	&::-webkit-scrollbar {
+	  height: 3px;
+	  background: #ECECEC;
+	  border-radius: 1px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+	  background: #D3242B;
+	  border-radius: 1px;
+	  border: 2px solid #D3242B;
+	}
+
+	& thead {
+	  border-collapse: collapse;
+	  line-height: 1.1;
+	  font-family: 'Clash Display','Satoshi', Arial, sans-serif;
+
+	  color: #0C213B;
+	  height: 100px;
+	  background: #F4F4F4;
+	  border-style: none;
+
+	  & th {
+		width: 20%;
+		@include vp-1023() {
+		  width: 300px;
+		}
+		text-transform: uppercase;
+		color: #7E7E7E;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 40px;
+		&:nth-of-type(3),
+		&:nth-of-type(4),
+		&:nth-of-type(5){
+		  width: 10%;
+		}
+		&:first-child {
+		  padding: 0 30px;
+		  border-radius: 15px 0 0 0;
+		  width: 5%;
+		}
+
+		&:last-child {
+		  border-radius: 0 15px 0 0;
+		}
+	  }
+	}
+
+	& tbody {
+	  & tr {
+		width: 100%;
+
+		&:last-child {
+		  & td {
+			&:first-child {
+			  border-radius: 0 0 0 15px;
+			}
+
+			&:last-child {
+			  border-radius: 0 0 15px 0;
+			}
+		  }
+		}
+
+		& td {
+		  padding: 20px 35px;
+		  height: max-content;
+		  text-align: center;
+		}
+
+		& {
+		  padding: 0 35px;
+		}
+
+		&:nth-of-type(even) {
+		  & td {
+			background: #F4F4F4;
+		  }
+		}
+	  }
+	}
+  }
+}

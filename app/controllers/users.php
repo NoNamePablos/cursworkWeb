@@ -4,7 +4,7 @@ $isSubmit=false;
 $errMsg='';
 $users_admin=selectAll('users');
 
-if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-registration'])){
+if($_SERVER['REQUEST_METHOD']==='POST' && (isset($_POST['btn-registration'])||isset($_POST['btn-registration-admin']))){
     $login=trim($_POST['login']);
     $email=trim($_POST['email']);
 
@@ -28,8 +28,9 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-registration'])){
             $errMsg="Этот логин уже используется!";
         }else{
             $password=password_hash($_POST['password-second'],PASSWORD_DEFAULT);
+            if(isset($_POST['admin']))$admin=1;
             $arrData=[
-                'admin'=>0,
+                'admin'=>$admin,
                 'login'=>$login,
                 'password'=>$password,
                 'email'=>trim($email),
@@ -40,13 +41,11 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-registration'])){
             $_SESSION['id'] = $user['id'];
             $_SESSION['login']=$user['login'];
             $_SESSION['admin']=$user['admin'];
-/*
-            if($_SESSION['admin']){
-                header('location: /' . 'admin/admin.php');
-            }else {
+            if(isset($_POST['btn-registration-admin'])){
+                header('location: '. BASE_URL . 'admin/users/index.php');
+            }else{
                 header('location: /');
-            }*/
-            header('location: /');
+            }
         }
 
     }
@@ -199,20 +198,19 @@ if($_SERVER['REQUEST_METHOD']==='GET'&&isset($_GET['delete_id'])){
 if($_SERVER['REQUEST_METHOD']==='GET'&&isset($_GET['edit_id'])){
     $user=selectOne('users',['id'=>$_GET['edit_id']]);
     $id=$user['id'];
-    $username=$user['login'];
+    $login=$user['login'];
     $email=$user['email'];
     $admin=$user['admin'];
 
 }
-if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST['update-user'])){
+if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST['btn-edit-admin'])){
     $id=$_POST['id'];
     $email=trim($_POST['email']);
-    $age=trim($_POST['age']);
-    $username=$_POST['login'];
+    $login=$_POST['login'];
     $passwordOld=trim($_POST['password-first']);
     $passwordNew=trim($_POST['password-second']);
     $admin=isset($_POST['admin'])?1:0;
-    if(mb_strlen($username,'UTF8')<2){
+    if(mb_strlen($login,'UTF8')<2){
         $errMsg="Логин не может быть меньше 2-х символов!ы";
         echo $errMsg;
     }elseif($passwordOld!==$passwordNew){
@@ -224,7 +222,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST['update-user'])){
         if(isset($_POST['admin']))$admin=1;
         $arrData=[
             'admin'=>$admin,
-            'login'=>$username,
+            'login'=>$login,
             'password'=>$pass
         ];
         update('users',$id,$arrData);

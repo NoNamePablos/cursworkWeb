@@ -1,0 +1,23 @@
+.admin{
+	width: 100%;
+	height: 100%;
+	&-container{
+	  width: 100%;
+	  display: grid;
+	  grid-template-columns: 1fr 5fr;
+	  grid-column-gap: 25px;
+	  padding: 100px 50px 50px;
+	  height: 100%;
+	}
+  	&-wrapper{
+	  width: 100%;
+	  display: grid;
+	  grid-template-columns: 1fr;
+	  grid-auto-rows: max-content;
+	  grid-row-gap: 25px;
+	}
+  	&-manage{
+		width: 100%;
+
+	}
+}

@@ -79,6 +79,10 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    &-admin{
+     max-width: 100%;
+    }
+
 }
 .body-hidden{
     @include vp-1023(){

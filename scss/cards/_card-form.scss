@@ -31,6 +31,10 @@
     & input,textarea{
       width: 100%;
     }
+    & input[type="checkbox"],input[type="hidden"]{
+      width: 1px;
+      height: 1px;
+    }
     & textarea{
       max-height: 300px;
       border-radius: 6px;

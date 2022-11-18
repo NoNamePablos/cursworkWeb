@@ -6,16 +6,16 @@
         </div>
         <div class="header__top-right">
             <a href="<?=BASE_URL?>authorization.php" class="header__cart">
-                <img src="./assets/img/UI/Shopping--cart.svg" alt="Cart" />
+                <img src="<?=BASE_URL?>/assets/img/UI/Shopping--cart.svg" alt="Cart" />
             </a>
             <div class="header__user-container">
                 <?php if(isset($_SESSION['id'])):?>
                 <a href="<?=BASE_URL?>authorization.php" class="header__user js-popup">
-                    <img src="./assets/img/UI/User--avatar.svg" alt="User" />
+                    <img src="<?=BASE_URL?>/assets/img/UI/User--avatar.svg" alt="User" />
                 </a>
                 <?php else:?>
                 <a href="<?=BASE_URL?>authorization.php" class="header__user js-popup js-auth">
-                    <img src="./assets/img/UI/User--avatar.svg" alt="User" />
+                    <img src="<?=BASE_URL?>/assets/img/UI/User--avatar.svg" alt="User" />
                 </a>
                 <?php endif;?>
             </div>
@@ -28,7 +28,7 @@
                 </div>
                 <?php if($_SESSION["admin"]):?>
                 <li class="header__user-menu-item header__user-menu-admin">
-                    <a href="" class="header__user-menu-link">Админка</a>
+                    <a href="<?=BASE_URL?>admin/catalog/index.php" class="header__user-menu-link">Админка</a>
                 </li>
                 <?php endif;?>
                 <li class="header__user-menu-item header__user-menu-mobile">
