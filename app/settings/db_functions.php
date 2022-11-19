@@ -159,20 +159,19 @@ function deleteFitness($table, $id){
 
 }
 //Выборка под клуб
-function selectAllFromFitnesssWitUsers($table1, $table2){
+function selectAllAutoAndBrand($table1, $table2){
     global $pdo;
     $sql="SELECT
-       t1.id_fitness,
-       t1.fitness_description,
-       t1.fitness_preview,
-       t1.fitness_video,
-       t1.fitness_name,
-       t1.created_date,
+       t1.id,
+       t1.full_name,
        t1.status,
-    t1.fitness_country,
-       t1.fitness_top,
-       t2.login
-       FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user=t2.id";
+       t1.price,
+       t1.year,
+       t1.created_date,
+       t1.img_preview,
+       t2.name,
+       t2.country
+       FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_brand=t2.id";
     $query=$pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);

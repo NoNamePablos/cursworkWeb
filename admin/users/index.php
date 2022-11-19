@@ -48,21 +48,23 @@ include '../../app/controllers/users.php';
                         <tbody>
                         <?php foreach ($users_admin as $key=>$user_admin):?>
                             <tr>
-                                <td><?=$user_admin['id'];?></td>
-                                <td><?=$user_admin['login'];?></td>
-                                <td><?=$user_admin['email'];?></td>
-                                <?php if($user_admin['admin']==1):?>
+                                <td><?= $user_admin['id']; ?></td>
+                                <td><?= $user_admin['login']; ?></td>
+                                <td><?= $user_admin['email']; ?></td>
+		                        <?php if ($user_admin['admin'] == 1): ?>
                                     <td>Админ</td>
-                                <?php else: ?>
+		                        <?php else: ?>
                                     <td>Пользователь</td>
-                                <?php endif; ?>
+		                        <?php endif; ?>
                                 <td class="admin-table-control">
-                                    <a class="button button-primary" href="edit.php?edit_id=<?=$user_admin['id'];?>">Редактировать</a>
-                                    <?php if($_SESSION['id']!=$user_admin['id']):?>
-                                    <a class="button button-danger" href="index.php?delete_id=<?=$user_admin['id'];?>">Удалить</a>
-                                    <?php else:?>
-                                        <a class="button button-disabled button-danger" href="index.php?delete_id=<?=$user_admin['id'];?>">Удалить</a>
-                                    <?php endif;?>
+                                    <a class="button button-primary" href="edit.php?edit_id=<?= $user_admin['id']; ?>">Редактировать</a>
+			                        <?php if ($_SESSION['id'] != $user_admin['id']): ?>
+                                        <a class="button button-danger"
+                                           href="index.php?delete_id=<?= $user_admin['id']; ?>">Удалить</a>
+			                        <?php else: ?>
+                                        <a class="button button-disabled button-danger"
+                                           href="index.php?delete_id=<?= $user_admin['id']; ?>">Удалить</a>
+			                        <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach;?>

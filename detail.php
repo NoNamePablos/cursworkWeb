@@ -1,5 +1,9 @@
-
-
+<?php
+include 'app/settings/path.php';
+include 'app/settings/db_functions.php';
+include 'app/controllers/users.php';
+include './app/controllers/catalog-auto.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,38 +18,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <div class="header__top">
-          <a href=""><h1 class="header__title">Avion</h1></a>
-          <div class="header__list">
-            <a href="element.path" class="header__list-link">Каталог</a>
-          </div>
-          <div class="header__top-right">
-            <a href="" class="header__cart">
-              <img src="./assets/img/UI/Shopping--cart.svg" alt="Cart" />
-            </a>
-            <div class="header__user-container">
-              <a href="" class="header__user js-popup">
-                <img src="./assets/img/UI/User--avatar.svg" alt="User" />
-              </a>
-            </div>
-            <ul class="header__user-menu js-mobile">
-              <li class="header__user-menu-item header__user-menu-admin">
-                <a href="" class="header__user-menu-link">Админка</a>
-              </li>
-              <li class="header__user-menu-item header__user-menu-mobile">
-                <a href="" class="header__user-menu-link">Каталог</a>
-              </li>
-              <li class="header__user-menu-item">
-                <a href="" class="header__user-menu-link">Настройки</a>
-              </li>
-              <li class="header__user-menu-item">
-                <a href="" class="header__user-menu-link">Выход</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+	    <?php include('app/snippets/header.php'); ?>
       <div class="subheader">
         <h1 class="subheader__title title-clash title-clash-2">
           Продажа автомобилей с пробегом в Москве
@@ -59,24 +32,11 @@
               <div
                 class="detail-body__item-slider card-slider swiper js-slider">
                 <div class="swiper-wrapper">
+                    <?php foreach ($auto_images as $key => $auto_image):?>
                   <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img1.jpg" />
+                    <img src="<?=BASE_URL .'/upload/assets/img/cars/'. $auto_image['img'];?>" />
                   </div>
-                  <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img2.jpg" />
-                  </div>
-                  <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img1.jpg" />
-                  </div>
-                  <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img2.jpg" />
-                  </div>
-                  <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img1.jpg" />
-                  </div>
-                  <div class="swiper-slide card-slider__item">
-                    <img src="/upload/assets/img/slider-images/img2.jpg" />
-                  </div>
+                <?php endforeach;?>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -165,6 +125,7 @@
           </aside>
         </div>
       </div>
+	    <?php include('app/snippets/footer.php') ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="/assets/js/main.js"></script>

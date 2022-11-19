@@ -1,14 +1,18 @@
 <?php
 include 'app/settings/path.php';
+include 'app/settings/db_functions.php';
+include 'app/controllers/users.php';
+include 'app/controllers/catalog-auto.php';
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./style.css"/>
     <title>kurs</title>
   </head>
   <body>
@@ -158,47 +162,47 @@ include 'app/settings/path.php';
                     </div>
                     <div class="input-label">
                       <input
-                        type="number"
-                        min="2002"
-                        max="2022"
-                        placeholder="2022"
-                        class="input-label__input input" />
+                              type="number"
+                              min="2002"
+                              max="2022"
+                              placeholder="2022"
+                              class="input-label__input input"/>
                     </div>
                   </div>
                 </div>
               </div>
             </form>
           </aside>
-          <section class="catalog-cards">
-            <ul class="catalog-grid">
-                <?php for ($i=0;$i<4;$i++):?>
-                <li class="catalog-grid__item">
-                    <div class="card-product">
-                        <a href="<?=BASE_URL?>detail.php?carid=<?=$i?>"  class="card-product__link"></a>
-                        <img
-                                src="/upload/assets/img/cars/car-admin.jpg"
-                                alt=""
-                                class="card-product__img" />
-                        <div class="card-product__description">
-                            <h4 class="title-clash title-clash-4 card-product__title">
-                                Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD
-                                Coupe 2016
-                            </h4>
-                            <p
-                                    class="title-satoshi title-satoshi-body-large card-product__price">
-                                6 390 000 <span>₽/шт</span>
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <?php endfor;?>
-            </ul>
-            <!--Pagination-->
-              <?php include("app/snippets/pagination.php") ?>
-          </section>
+            <section class="catalog-cards">
+                <ul class="catalog-grid">
+			        <?php foreach ($catalog as $key => $catalogItem): ?>
+                        <li class="catalog-grid__item">
+                            <div class="card-product">
+                                <a href="<?= BASE_URL ?>detail.php?carid=<?= $catalogItem['id'] ?>"
+                                   class="card-product__link"></a>
+                                <img
+                                        src="<?= BASE_URL . '/upload/assets/img/cars/' . $catalogItem['img_preview']; ?>"
+                                        alt="<?= $catalogItem['full_name'] ?>"
+                                        class="card-product__img"/>
+                                <div class="card-product__description">
+                                    <h4 class="title-clash title-clash-4 card-product__title">
+								        <?= $catalogItem['full_name'] ?>
+                                    </h4>
+                                    <p
+                                            class="title-satoshi title-satoshi-body-large card-product__price">
+								        <?= $catalogItem['price'] ?> <span>₽/шт</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+			        <?php endforeach; ?>
+                </ul>
+                <!--Pagination-->
+		        <?php include("app/snippets/pagination.php") ?>
+            </section>
         </div>
       </div>
-        <?php include('app/snippets/header.php');?>
+	    <?php include('app/snippets/footer.php'); ?>
     </div>
     <script src="/assets/js/main.js"></script>
   </body>
