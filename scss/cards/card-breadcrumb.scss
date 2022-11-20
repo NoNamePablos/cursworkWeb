@@ -1,0 +1,27 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  & > * + * {
+    margin-left: 10px;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    &:not(:nth-last-of-type(1)){
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 10px;
+        height: 2px;
+        background-color: var(--dark-primary);
+        flex: 0 0 10px;
+        margin-left: 5px;
+      }
+    }
+
+  }
+  &_link {
+
+  }
+}

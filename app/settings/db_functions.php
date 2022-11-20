@@ -140,28 +140,33 @@ function updateFitness($table, $id, $params){
     dbCheckError($query);
 
 }
+
 //глобальная функ удаления
-function delete($table,$id){
-    global  $pdo;
-    $sql="DELETE FROM $table WHERE id = $id";
-    $query=$pdo->prepare($sql);
-    $query->execute();
-    dbCheckError($query);
+function delete($table, $id)
+{
+	global $pdo;
+	$sql = "DELETE FROM $table WHERE id = $id";
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
 
 }
-//Удаление фитнесс-клуба
-function deleteFitness($table, $id){
-    global  $pdo;
-    $sql="DELETE FROM $table WHERE id_fitness = $id";
-    $query=$pdo->prepare($sql);
-    $query->execute();
-    dbCheckError($query);
+
+function deleteAuto($table, $id)
+{
+	global $pdo;
+	$sql = "DELETE FROM $table WHERE id_auto = $id";
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
 
 }
+
 //Выборка под клуб
-function selectAllAutoAndBrand($table1, $table2){
-    global $pdo;
-    $sql="SELECT
+function selectAllAutoAndBrand($table1, $table2)
+{
+	global $pdo;
+	$sql = "SELECT
        t1.id,
        t1.full_name,
        t1.status,

@@ -52,6 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['append_auto'])) {
 	$price = trim($_POST['price']);
 	$year = trim($_POST['year']);
 	$status = isset($_POST['status']) ? 1 : 0;
+
+	$engine_power = trim($_POST['engine_power']);
+	$transmission = trim($_POST['transmission']);
+	$engine = trim($_POST['engine']);
+	$privod = trim($_POST['privod']);
+	$description = trim($_POST['description']);
+
 	if (!empty($_FILES['img_preview']['name'])) {
 		$auto_prev_name = time() . "_" . $_FILES['img_preview']['name'];
 		$auto_prev_TMPname = $_FILES['img_preview']['tmp_name'];
@@ -72,10 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['append_auto'])) {
 			'status' => $status,
 			'price' => $price,
 			'year' => $year,
-			'img_preview'=>$_POST['img_preview'],
+			'img_preview' => $_POST['img_preview'],
 
 		];
 		$id = insert('automobile', $arrData);
+		$arrInfo = [
+			'engine_power' => $engine_power,
+			'engine' => $engine,
+			'transmission' => $transmission,
+			'privod' => $privod,
+			'description' => $description,
+			'id_auto' => $id,
+		];
+		$id_info = insert('specifications', $arrInfo);
 
 		if (count($_FILES['img_files']) > 0) {
 			$file_count = count($_FILES['img_files']);
@@ -105,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['carid'])) {
 	$price = trim($auto['price']);
 	$year = trim($auto['year']);
 	$auto_images=selectAll('upload_table',['id_auto'=>(int)$id]);
+	$car_info=selectOne('specifications',['id_auto' => $id]);
 }
 
 
@@ -243,8 +260,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_film'])) {
 //Удаление через админку
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
 	$id = $_GET['delete_id'];
-	deleteFilms('films', $id);
-	header('location: ' . BASE_URL . 'admin/films/index.php');
+	delete('automobile', $id);
+	deleteAuto('specifications', $id);
+	deleteAuto('upload_table', $id);
+
+	header('location: ' . BASE_URL . 'admin/catalog/index.php');
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['deletefav_id'])) {
 

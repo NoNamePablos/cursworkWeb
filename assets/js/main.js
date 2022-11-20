@@ -33,3 +33,11 @@ if(document.querySelector(".js-popup")){
         })
     }
 }
+
+if(document.querySelector('.js-animation')){
+    $(".js-animation").click(function (){
+        $('html, body').animate({
+            scrollTop: $(".js-animation-target").offset().top
+        }, 2000);
+    });
+}
