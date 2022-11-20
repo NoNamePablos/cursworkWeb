@@ -33,7 +33,7 @@ if (isset($_POST['score_scope']) && isset($_POST['review_positiv_text']) && isse
 
 function htmlComment($comment)
 {
-	$user = selectOne('users', ['id' => $comment['id']]);
+	$user = selectOne('users', ['id' => $comment['id_user']]);
 	if (!$user['admin']) {
 		$html = <<<HTML
 	   <div class="review-card" data-commentid="{$comment['id']}">

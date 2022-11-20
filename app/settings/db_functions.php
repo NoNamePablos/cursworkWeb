@@ -152,6 +152,16 @@ function delete($table, $id)
 
 }
 
+function deleteUseComments($table, $id)
+{
+	global $pdo;
+	$sql = "DELETE FROM $table WHERE id = '$id'";
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
+
+}
+
 function deleteAuto($table, $id)
 {
 	global $pdo;
@@ -162,6 +172,24 @@ function deleteAuto($table, $id)
 
 }
 
+function deleteBrand($table, $id)
+{
+	global $pdo;
+	$sql = "DELETE FROM $table WHERE id_brand = $id";
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
+
+}
+function deleteBrandUseStr($table, $id)
+{
+	global $pdo;
+	$sql = "DELETE FROM $table WHERE id_brand = '$id'";
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
+
+}
 //Выборка под клуб
 function selectAllAutoAndBrand($table1, $table2)
 {

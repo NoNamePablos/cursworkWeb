@@ -2,7 +2,7 @@
 include 'app/settings/path.php';
 include 'app/settings/db_functions.php';
 include 'app/controllers/users.php';
-include './app/controllers/catalog-auto.php';
+include 'app/controllers/catalog-auto.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

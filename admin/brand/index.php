@@ -1,8 +1,7 @@
 <?php
 include '../../app/settings/path.php';
 include '../../app/settings/db_functions.php';
-include '../../app/controllers/users.php';
-include '../../app/controllers/catalog-auto.php';
+include '../../app/controllers/brand-controller.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -21,42 +20,32 @@ include '../../app/controllers/catalog-auto.php';
     <section class="admin">
         <div class="admin-container">
 	        <?php include('../../app/snippets/sidebar.php'); ?>
-
             <div class="admin-wrapper">
                 <div class="admin-manage">
-                    <a href="<?= BASE_URL . 'admin/catalog/create.php'; ?>"
-                       class="button button-dark-purple">Добавить</a>
+                    <a href="<?= BASE_URL . 'admin/brand/create.php'; ?>" class="button button-dark-purple">Добавить</a>
+                    <!--                                        <a href="-->
+					<? //=BASE_URL.'admin/catalog/index.php';?><!--" class="admin-table--manage_btn btn btn-success">Вернуться назад</a>-->
                 </div>
                 <div class="admin-table">
                     <table>
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Полное название</th>
-                            <th>Бренд</th>
-                            <th>Цена</th>
-                            <th>Год</th>
-                            <th>Статус</th>
+                            <th>название</th>
+                            <th>город</th>
                             <th>Управление</th>
                         </tr>
                         </thead>
                         <tbody>
-						<?php foreach ($catalog as $key => $catalogItem): ?>
+						<?php foreach ($brands as $key => $brand): ?>
                             <tr>
-                                <td><?= $catalogItem['id'] ?></td>
-                                <td><?= $catalogItem['full_name'] ?>/td>
-                                <td><?= $catalogItem['name'] ?></td>
-                                <td><?= $catalogItem['price'] ?></td>
-                                <td><?= $catalogItem['year'] ?></td>
-								<?php if ($catalogItem['status'] == 1): ?>
-                                    <td>В наличие</td>
-								<?php else: ?>
-                                    <td>Не в наличии</td>
-								<?php endif; ?>
+                                <td><?= $brand['id']; ?></td>
+                                <td><?= $brand['name']; ?></td>
+                                <td><?= $brand['country']; ?></td>
                                 <td class="admin-table-control">
-                                    <a class="button button-primary" href="edit.php?edit_id=<?= $catalogItem['id']; ?>">Редактировать</a>
-                                    <a class="button button-danger"
-                                       href="index.php?delete_id=<?= $catalogItem['id']; ?>">Удалить</a>
+                                    <a class="button button-primary" href="edit.php?edit_id=<?= $brand['id']; ?>">Редактировать</a>
+                                        <a class="button button-danger"
+                                           href="index.php?delete_id=<?= $brand['id']; ?>">Удалить</a>
                                 </td>
                             </tr>
 						<?php endforeach; ?>

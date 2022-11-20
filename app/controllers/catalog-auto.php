@@ -113,6 +113,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['append_auto'])) {
 	$email = '';
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_auto'])) {
+
+	global $ROOT__PATH_FOR_FILES;
+	$full_name = trim($_POST['full_name']);
+	$brand_selected = trim($_POST['over-selected']);
+	$price = trim($_POST['price']);
+	$year = trim($_POST['year']);
+	$status = isset($_POST['status']) ? 1 : 0;
+
+	$engine_power = trim($_POST['engine_power']);
+	$transmission = trim($_POST['transmission']);
+	$engine = trim($_POST['engine']);
+	$privod = trim($_POST['privod']);
+	$description = trim($_POST['description']);
+
+	if (!empty($_FILES['img_preview']['name'])) {
+		$auto_prev_name = time() . "_" . $_FILES['img_preview']['name'];
+		$auto_prev_TMPname = $_FILES['img_preview']['tmp_name'];
+		$destintaiton = $ROOT__PATH_FOR_FILES . '\\upload\assets\img\cars\\' . $auto_prev_name;
+		$res = move_uploaded_file($auto_prev_TMPname, $destintaiton);
+		if ($res) {
+			$_POST['img_preview'] = $auto_prev_name;
+		} else {
+			$errMsg = "Уккщк";
+		}
+	}
+	if ($full_name === "" || $brand_selected === "" || !is_numeric($price) || !is_numeric($year)) {
+		$errMsg = "Не все поля заполнены !";
+	} else {
+		$arrData = [
+			'full_name' => $full_name,
+			'id_brand' => $brand_selected,
+			'status' => $status,
+			'price' => $price,
+			'year' => $year,
+			'img_preview' => $_POST['img_preview'],
+
+		];
+		$id = $_POST['id-auto'];
+		update('automobile', $id, $arrData);
+//		$id = insert('automobile', $arrData);
+		$arrInfo = [
+			'engine_power' => $engine_power,
+			'engine' => $engine,
+			'transmission' => $transmission,
+			'privod' => $privod,
+			'description' => $description,
+			'id_auto' => $id,
+		];
+		$car_info = selectOne('specifications', ['id_auto' => $id]);
+		update('specifications', $car_info['id'], $arrInfo);
+		if (count($_FILES['img_files']) > 0) {
+			$file_count = count($_FILES['img_files']);
+			$res = [];
+			$format_files = reArrayFiles($_FILES['img_files']);
+			deleteAuto('upload_table', $id);
+			for ($i = 0; $i < count($format_files); $i++) {
+				$arrData = [
+					'id_auto' => (int)$id,
+					'img' => moveFile($format_files[$i]),
+				];
+
+				$id_file = insert('upload_table', $arrData);
+			}
+
+		}
+		header('location: ' . BASE_URL . 'admin/catalog/index.php');
+	}
+} else {
+	$login = '';
+	$email = '';
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['carid'])) {
 	$auto = selectOne('automobile', ['id' => $_GET['carid']]);
@@ -120,9 +193,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['carid'])) {
 	$full_name = trim($auto['full_name']);
 	$price = trim($auto['price']);
 	$year = trim($auto['year']);
-	$auto_images=selectAll('upload_table',['id_auto'=>(int)$id]);
-	$car_info=selectOne('specifications',['id_auto' => $id]);
-	$car_comments=selectAllComments('auto_comments','users',$id);
+	$auto_images = selectAll('upload_table', ['id_auto' => (int)$id]);
+	$car_info = selectOne('specifications', ['id_auto' => $id]);
+	$car_comments = selectAllComments('auto_comments', 'users', $id);
 }
 
 
@@ -186,74 +259,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['fav'])) {
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_film'])) {
-	if (!empty($_FILES['film_preview']['name'])) {
-		$film_prev_name = time() . "_" . $_FILES['film_preview']['name'];
-		$film_prev_TMPname = $_FILES['film_preview']['tmp_name'];
-		$destintaiton = $ROOT__PATH_FOR_FILMS . '\assets\uploads\\' . $film_prev_name;
-		$res = move_uploaded_file($film_prev_TMPname, $destintaiton);
-		if ($res) {
-			$_POST['film_preview'] = $film_prev_name;
-		} else {
-			$errMsg = "Уккщк";
-		}
-	} else {
-		$errMsg = "Уккщк1";
-	}
-	if (!empty($_FILES['film_video']['name'])) {
-		$film_prev_name = time() . "_" . $_FILES['film_video']['name'];
-		$film_prev_TMPname = $_FILES['film_video']['tmp_name'];
-		$destintaiton = $ROOT__PATH_FOR_FILMS . '\\assets\\uploads\\' . $film_prev_name;
-		$res = move_uploaded_file($film_prev_TMPname, $destintaiton);
-		if ($res) {
-			$_POST['film_video'] = $film_prev_name;
-		} else {
-			$errMsg = "Уккщк";
-		}
-	} else {
-		$errMsg = "Уккщк1";
-	}
-	$id_film = trim($_POST['id']);
-	$title = trim($_POST['film_name']);
-	$descr = trim($_POST['film_description']);
-	$acters = trim($_POST['film_acters']);
-	$preview = trim($_POST['film_preview']);
-	$world_money = trim($_POST['film_world_money']);
-	$rus_money = trim($_POST['film_rus_money']);
-	$year = trim($_POST['film_year']);
-	$genres = trim($_POST['film_genres']);
-	$director = trim($_POST['film_director']);
-	$film_contry = trim($_POST['film_country']);
-	$publish = isset($_POST['publish']) ? 1 : 0;
-	$top = isset($_POST['film_top']) ? 1 : 0;
-	if ($title === "" || $descr === "" || $acters === "" || $genres === "") {
-		$errMsg = "Не все поля заполнены !";
-	} elseif (mb_strlen($title, 'UTF8') < 2) {
-		$errMsg = "Логин не может быть меньше 2-х символов!ы";
-	} else {
-		$arrData = [
-			'film_year' => $year,
-			'film_country' => $film_contry,
-			'film_genres' => $genres,
-			'film_time' => 120,
-			'film_preview' => $_POST['film_preview'],
-			'film_video' => $_POST['film_video'],
-			'film_director' => $director,
-			'film_acters' => $acters,
-			'film_description' => $descr,
-			'film_name' => $title,
-			'film_world_money' => (int)$world_money,
-			'film_rus_money' => (int)$rus_money,
-			'status' => $publish,
-			'id_user' => $_SESSION['id'],
-			'film_top' => $top
-		];
-		showArr($id_film);
-		showArr($arrData);
-
-		updateFilms('films', $id_film, $arrData);
-		header('location: ' . BASE_URL . 'admin/films/index.php');
-	}
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {
+	$auto = selectOne('automobile', ['id' => $_GET['edit_id']]);
+	$id = $auto['id'];
+	$full_name = trim($auto['full_name']);
+	$price = trim($auto['price']);
+	$year = trim($auto['year']);
+	$auto_images = selectAll('upload_table', ['id_auto' => (int)$id]);
+	$car_info = selectOne('specifications', ['id_auto' => $id]);
+	$car_comments = selectAllComments('auto_comments', 'users', $id);
 
 }
 

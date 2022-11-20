@@ -69,18 +69,14 @@ if (document.querySelector('.js-append-review')) {
 
         }
         event.preventDefault();
-
-        // event.preventDefault(); //Prevent the default submit
     });
 }
 
 
 if (document.querySelectorAll('.js-review-close').length > 0) {
-
-    const close = document.querySelectorAll('.js-review-close');
-    close.forEach((el) => {
-        el.addEventListener('click', () => {
-            const parent = el.closest(".review-card");
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('js-review-close')) {
+            const parent = e.target.closest(".review-card");
             $.ajax({
                 url: 'app/controllers/review-ajax.php',
                 type: 'post',
@@ -89,41 +85,9 @@ if (document.querySelectorAll('.js-review-close').length > 0) {
                     'id_comment': parent.getAttribute("data-commentid"),
                 },
                 success: function (data) {
-                  parent.remove();
+                    parent.remove();
                 }
             });
-        })
-    })
-
-
-    // $('.js-append-review').on('click', function (event) { //Trigger on form submit
-    //     var postForm = { //Fetch form data
-    //         'id_auto': $('.input-auto').val(),
-    //         'id': $('.input-user').val(),
-    //         'score_scope': $('.input-score').val(), //Store name fields value
-    //         'review_positiv_text': $('.js-positiv-text').val(),
-    //         'review_negative_text': $('.js-negativ-text').val(),
-    //     };
-    //     if (!($('.input-score').val() > 5 || $('.input-score').val() <= 0)) {
-    //         if (!($('.js-positiv-text').val().length === 0) && !($('.js-negativ-text').val().length === 0)) {
-    //             $.ajax({ //Process the form using $.ajax()
-    //                 type: 'POST', //Method type
-    //                 url: 'app/controllers/review-ajax.php', //Your form processing file URL
-    //                 data: postForm, //Forms name
-    //                 dataType: 'html',
-    //                 success: function (data) {
-    //                     $('.input-score').val(1);
-    //                     $('.js-positiv-text').val("");
-    //                     $('.js-negativ-text').val("");
-    //                     const wrap = document.querySelector('.review-body');
-    //                     wrap.insertAdjacentHTML('afterbegin', data);
-    //                 }
-    //             });
-    //         }
-    //
-    //     }
-    //     event.preventDefault();
-    //
-    //     // event.preventDefault(); //Prevent the default submit
-    // });
+        }
+    });
 }

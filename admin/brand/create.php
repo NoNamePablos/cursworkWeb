@@ -1,7 +1,7 @@
 <?php
 include '../../app/settings/path.php';
 include '../../app/settings/db_functions.php';
-include '../../app/controllers/users.php';
+include '../../app/controllers/brand-controller.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -29,7 +29,7 @@ include '../../app/controllers/users.php';
                 <div class="admin-form">
                     <div class="card-form">
                         <div class="card-form-wrapper">
-                            <h2 class="card-form__title title-clash title-clash-2">Добавление пользователя</h2>
+                            <h2 class="card-form__title title-clash title-clash-2">Добавление бренда</h2>
 
                             <form action="create.php" method="post" class="card-form-form">
                                 <p class="Error">
@@ -40,32 +40,16 @@ include '../../app/controllers/users.php';
                                 </p>
                                 <div class="card-form-form__item">
                                     <div class="input-label">
-                                        <input type="text" name="login" placeholder="Введите login" class="input-label__input input">
+                                        <input type="text" name="name" placeholder="Введите название бренда" class="input-label__input input">
                                     </div>
                                 </div>
                                 <div class="card-form-form__item">
                                     <div class="input-label">
-                                        <input type="text" name="email" placeholder="Введите email" class="input-label__input input">
+                                        <input type="text" name="country" placeholder="Введите город" class="input-label__input input">
                                     </div>
                                 </div>
                                 <div class="card-form-form__item">
-                                    <div class="input-label">
-                                        <input type="password" name="password-first" placeholder="Введите пароль" class="input-label__input input">
-                                    </div>
-                                </div>
-                                <div class="card-form-form__item">
-                                    <div class="input-label">
-                                        <input type="password" name="password-second" placeholder="Повторите пароль" class="input-label__input input">
-                                    </div>
-                                </div>
-                                <div class="card-form-form__item">
-                                    <label for="value-admin" class="filter-card-checkbox custom-checkbox">
-                                        <input type="checkbox" name="admin" value="1" id="value-admin">
-                                        <span>Админ?</span>
-                                    </label>
-                                </div>
-                                <div class="card-form-form__item">
-                                    <button name="btn-registration-admin" type="submit" class="card-form-form__button button button-dark-purple button-no-border">Добавить</button>
+                                    <button name="btn-registration-brand" type="submit" class="card-form-form__button button button-dark-purple button-no-border">Добавить</button>
                                 </div>
                             </form>
                         </div>

@@ -21,16 +21,8 @@ $brands = selectAll('brand');
 	<?php include('../../app/snippets/header.php'); ?>
     <section class="admin">
         <div class="admin-container">
-            <aside class="sidebar">
-                <ul class="sidebar-list">
-                    <li class="sidebar-list__item">
-                        <a href="<?= BASE_URL ?>/admin/catalog/index.php" class="sidebar-list__link">Каталог</a>
-                    </li>
-                    <li class="sidebar-list__item">
-                        <a href="<?= BASE_URL ?>/admin/users/index.php" class="sidebar-list__link">Пользователи</a>
-                    </li>
-                </ul>
-            </aside>
+	        <?php include('../../app/snippets/sidebar.php'); ?>
+
             <div class="admin-wrapper">
                 <div class="admin-manage">
                     <a href="<?= BASE_URL . 'admin/catalog/index.php'; ?>" class="button button-dark-purple">Назад</a>

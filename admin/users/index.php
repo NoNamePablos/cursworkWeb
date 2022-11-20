@@ -9,30 +9,23 @@ include '../../app/controllers/users.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" content="#111111"/>
     <title>Kurs</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style.css"/>
 </head>
 
 <body>
 <div class="container container-admin">
-    <?php include('../../app/snippets/header.php');?>
+	<?php include('../../app/snippets/header.php'); ?>
     <section class="admin">
         <div class="admin-container">
-            <aside class="sidebar">
-                <ul class="sidebar-list">
-                    <li class="sidebar-list__item">
-                        <a href="<?=BASE_URL?>/admin/catalog/index.php" class="sidebar-list__link">Каталог</a>
-                    </li>
-                    <li class="sidebar-list__item">
-                        <a href="<?=BASE_URL?>/admin/users/index.php" class="sidebar-list__link">Пользователи</a>
-                    </li>
-                </ul>
-            </aside>
+			<?php include('../../app/snippets/sidebar.php'); ?>
+
             <div class="admin-wrapper">
                 <div class="admin-manage">
-                    <a href="<?=BASE_URL.'admin/users/create.php';?>" class="button button-dark-purple">Добавить</a>
-                    <!--                                        <a href="--><?//=BASE_URL.'admin/catalog/index.php';?><!--" class="admin-table--manage_btn btn btn-success">Вернуться назад</a>-->
+                    <a href="<?= BASE_URL . 'admin/users/create.php'; ?>" class="button button-dark-purple">Добавить</a>
+                    <!--                                        <a href="-->
+					<? //=BASE_URL.'admin/catalog/index.php';?><!--" class="admin-table--manage_btn btn btn-success">Вернуться назад</a>-->
                 </div>
                 <div class="admin-table">
                     <table>
