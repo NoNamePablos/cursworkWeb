@@ -122,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['carid'])) {
 	$year = trim($auto['year']);
 	$auto_images=selectAll('upload_table',['id_auto'=>(int)$id]);
 	$car_info=selectOne('specifications',['id_auto' => $id]);
+	$car_comments=selectAllComments('auto_comments','users',$id);
 }
 
 

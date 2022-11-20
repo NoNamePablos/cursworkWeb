@@ -258,19 +258,19 @@ function selectLastComment($table1,$table2,$lastId){
     $sql="SELECT
       t1.*,
        t2.login
-       FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user=t2.id AND t1.id_comment=$lastId";
+       FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user=t2.id AND t1.id=$lastId";
     $query=$pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);
     return $query->fetch();
 }
 
-function selectAllComments($table1,$table2,$id_fitness){
+function selectAllComments($table1,$table2,$id_car){
     global $pdo;
     $sql="SELECT
       t1.*,
        t2.login
-       FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user=t2.id AND t1.id_fitness=$id_fitness";
+       FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user=t2.id AND t1.id_auto=$id_car";
     $query=$pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);

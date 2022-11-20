@@ -87,40 +87,40 @@ include './app/controllers/catalog-auto.php';
 							<?php if (isset($_SESSION['id'])): ?>
                                 <div class="card-form">
                                     <div class="card-form-wrapper">
-                                        <form action="create.php" method="post" class="card-form-form"
+                                        <form method="post" class="card-form-form js-form"
                                               enctype="multipart/form-data">
                                             <p class="Error">
 												<?= $errMsg ?>
                                             </p>
                                             <div class="card-form-form__item">
+                                                <input type="hidden" name="id" class="input-user"
+                                                       value="<?= $_SESSION['id']; ?>">
+                                                <input type="hidden" class="input-auto" name="id_auto"
+                                                       value="<?= $auto['id']; ?>">
                                                 <div class="input-label">
                                                     <p>Оценка</p>
-                                                    <input type="number" name="score_scope" min="1" value="1" step='1' max="5"
-                                                           class="input-label__input input">
+                                                    <input type="number" name="score_scope" min="1" value="1" step='1'
+                                                           max="5"
+                                                           class="input-label__input input input-score">
                                                 </div>
                                             </div>
                                             <div class="card-form-form__item">
                                                 <div class="input-label">
                                                     <p>Достоинства</p>
-                                                    <textarea name="review_positiv_text"></textarea>
+                                                    <textarea name="review_positiv_text"
+                                                              class="js-positiv-text"></textarea>
                                                 </div>
                                             </div>
                                             <div class="card-form-form__item">
                                                 <div class="input-label">
                                                     <p>Недостатки</p>
-                                                    <textarea name="review_negative_text"></textarea>
+                                                    <textarea name="review_negative_text"
+                                                              class="js-negativ-text"></textarea>
                                                 </div>
                                             </div>
                                             <div class="card-form-form__item">
-                                                <div class="input-label">
-                                                    <p>Прикрепить файл</p>
-                                                    <input type="file" name="img_preview"
-                                                           class="input-label__input input">
-                                                </div>
-                                            </div>
-                                            <div class="card-form-form__item">
-                                                <button name="append_auto" type="submit"
-                                                        class="card-form-form__button button button-dark-purple button-no-border">
+                                                <button name="" type="button"
+                                                        class=" js-append-review card-form-form__button button button-dark-purple button-no-border">
                                                     Добавить
                                                 </button>
                                             </div>
@@ -129,10 +129,43 @@ include './app/controllers/catalog-auto.php';
                                 </div>
 							<?php else: ?>
                                 <a class="button button-danger"
-                                   href="<?=BASE_URL?>authorization.php">Авторизация</a>
+                                   href="<?= BASE_URL ?>authorization.php">Авторизация</a>
 							<?php endif; ?>
                         </div>
-                        <div class="detail-body__item-body"></div>
+                        <div class="detail-body__item-body">
+                            <div class="review-body">
+			                    <?php foreach ($car_comments as $key => $car_comment): ?>
+                                    <div class="review-card" data-commentid="<?= $car_comment['id'] ?>">
+                                        <?php if($_SESSION["admin"]):?>
+                                        <div class="review-card__close js-review-close">X</div>
+                                        <?php endif;?>
+                                        <div class="review-card__block">
+                                            <div class="review-card__item">
+                                                <p>Пользователь</p>
+                                                <span><?= $car_comment['login'] ?></span>
+                                            </div>
+                                            <div class="review-card__item">
+                                                <p>Оценка</p>
+                                                <span><?= $car_comment['score_scope'] ?></span>/ <span>5</span>
+                                            </div>
+                                        </div>
+                                        <div class="review-card__item">
+                                            <p>Достоинства</p>
+                                            <div class="review-card__pole">
+                                                <p><?= $car_comment['review_positiv_text'] ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="review-card__item">
+                                            <p>Недостатки</p>
+                                            <div class="review-card__pole">
+                                                <p><?= $car_comment['review_negative_text'] ?></p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+			                    <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

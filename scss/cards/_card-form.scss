@@ -41,6 +41,8 @@
       padding: 15px;
       background-color: var(--light-grey);
       color: var(--color-title);
+      resize: vertical;
+      width: 100% !important;
     }
   }
 
