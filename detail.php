@@ -177,7 +177,7 @@ include 'app/controllers/catalog-auto.php';
                     </div>
                     <div class="detail-payment-availabile">В наличие</div>
                     <div class="detail-payment-buttons">
-                        <button class="button button-no-border button-primary">
+                        <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
                             Добавить в избранное
                         </button>
                         <button class="button button-no-border button-dark-purple js-animation">

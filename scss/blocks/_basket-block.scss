@@ -1,0 +1,114 @@
+.basket{
+	&-card{
+
+	  display: flex;
+	  flex-direction: column;
+	  color: var(--color-title);
+	  &>*+*{
+		margin-top: 25px;
+	  }
+	  &__column{
+		display: flex;
+		flex-direction: column;
+		padding: 0 20px;
+		&>*+*{
+		  margin-top: 15px;
+		}
+	  }
+	  &__price{
+		font-weight: 500;
+		font-size: 35px;
+		text-align: center;
+	  }
+	  &__title{
+		font-weight: 500;
+		font-size: 20px;
+	  }
+	  &__item{
+		position: relative;
+		display: grid;
+		grid-template-columns: 300px 1fr 1fr;
+		& img{
+		  width: 100%;
+		  object-fit: cover;
+		}
+	  }
+	}
+
+  &-price{
+
+	& p{
+	  color: var(--color-title);
+	}
+	&__total{
+	  font-weight: 500;
+	  font-size: 35px;
+
+	}
+  }
+  & .detail-body{
+	width: 100%;
+  }
+  &-count{
+	cursor: pointer;
+	padding-bottom: 5px;
+	border-bottom: 2px solid var(--dark-primary);
+	&:hover{
+	  border-bottom: 2px solid var(--primary);
+	}
+  }
+  &-item {
+	width: 100%;
+	height: max-content;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	& > * + * {
+	  margin-left: 25px;
+	}
+  }
+}
+
+.button-remove{
+  position: absolute;
+  background: transparent;
+  outline: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  & span{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	&:focus{
+	  border: 2px solid var(--color-title);
+	}
+	&::before,&:after{
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  width: 2px;
+	  height: 14px;
+	  content: '';
+	  transition: .3s background-color ease;
+	  transform: translate3d(-50%,-50%,0) rotate(-45deg)
+	}
+	&:after{
+	  background: #b8b8b8;
+	  width: 2px;
+	  height: 10px;
+	  transform: translate3d(-50%,-50%,0) rotate(45deg);
+	}
+	&:before,&:after{
+
+	  background: #b8b8b8;
+	  width: 2px;
+	  height: 20px;
+	}
+  }
+}

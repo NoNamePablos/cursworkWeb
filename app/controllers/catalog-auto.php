@@ -195,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['carid'])) {
 	$year = trim($auto['year']);
 	$auto_images = selectAll('upload_table', ['id_auto' => (int)$id]);
 	$car_info = selectOne('specifications', ['id_auto' => $id]);
-	$car_comments = selectAllComments('auto_comments', 'users', $id);
+	$car_comments = selectAllComments('auto_comments', 'users',$id);
 }
 
 
@@ -257,6 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['fav'])) {
 	array_push($_SESSION['favourites'], $fav_id);
 	header('location: ' . BASE_URL . 'detalnaya.php?film=' . $fav_id);
 }
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {

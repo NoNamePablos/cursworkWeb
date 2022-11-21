@@ -3,7 +3,7 @@ include 'app/settings/path.php';
 include 'app/settings/db_functions.php';
 include 'app/controllers/users.php';
 include 'app/controllers/catalog-auto.php';
-
+include 'app/controllers/catalog-filter.php'
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ include 'app/controllers/catalog-auto.php';
         <div class="catalog-container">
           <aside class="catalog-filter">
             <form class="catalog-form" action="" method="get">
-              <div class="filter-card">
+              <div class="filter-card active" >
                 <div class="filter-card__header">
                   <p class="filter-card__title">Бренд</p>
                   <i class="filter-card__ico" aria-hidden="true"
@@ -45,30 +45,14 @@ include 'app/controllers/catalog-auto.php';
                 <div class="filter-card__body">
                   <div class="filter-card__wrapper filter-card-flex">
                     <div class="filter-card__list">
-                      <label
-                        for="value-1"
-                        class="filter-card-checkbox custom-checkbox">
-                        <input type="checkbox" id="value-1" />
-                        <span>test</span>
-                      </label>
-                      <label
-                        for="value-2"
-                        class="filter-card-checkbox custom-checkbox">
-                        <input type="checkbox" id="value-2" />
-                        <span>test</span>
-                      </label>
-                      <label
-                        for="value-3"
-                        class="filter-card-checkbox custom-checkbox">
-                        <input type="checkbox" id="value-3" />
-                        <span>test</span>
-                      </label>
-                      <label
-                        for="value-4"
-                        class="filter-card-checkbox custom-checkbox">
-                        <input type="checkbox" id="value-4" />
-                        <span>test</span>
-                      </label>
+                        <?php foreach ($brands as $key => $brand):?>
+                        <label
+                                for="<?=$brand['id']?>" data-filterid="<?=$brand['id']?>"
+                                class="filter-card-checkbox custom-checkbox">
+                            <input type="checkbox" id="<?=$brand['id']?>" />
+                            <span><?=$brand['name'];?></span>
+                        </label>
+                        <?php endforeach;?>
                     </div>
                   </div>
                 </div>

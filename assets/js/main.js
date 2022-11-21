@@ -91,3 +91,44 @@ if (document.querySelectorAll('.js-review-close').length > 0) {
         }
     });
 }
+if(document.querySelector('.js-cart')){
+    const btn=document.querySelector('.js-cart');
+    btn.addEventListener('click',()=>{
+        const  cardId=btn.getAttribute("data-carid");
+        $.ajax({
+            url: 'app/controllers/cart/cart-ajax.php',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'id_auto':cardId,
+            },
+            success: function (data) {
+                alert('Добавлено в корзину');
+            }
+        });
+    })
+}
+if(document.querySelectorAll('.js-remove').length>0){
+    const btn=document.querySelectorAll('.js-remove');
+    btn.forEach((el)=>{
+        el.addEventListener('click',()=>{
+            const parent=el.closest('.basket-card__item');
+            const  cardId=parent.getAttribute("data-cardid");
+            console.log(cardId);
+            $.ajax({
+                url: 'app/controllers/cart/cart-ajax.php',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    'id_remove':cardId,
+                },
+                success: function (data) {
+                    alert('Удалено из корзины');
+                    console.log(data);
+                    document.querySelector(".basket-price__total").textContent=`${data}₽`;
+                    parent.remove();
+                }
+            });
+        })
+    })
+}
