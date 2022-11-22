@@ -132,3 +132,32 @@ if(document.querySelectorAll('.js-remove').length>0){
         })
     })
 }
+
+if(document.querySelector('.js-cart-basket')){
+
+    const btn=document.querySelector('.js-cart-basket-button');
+
+    btn.addEventListener('click',()=>{
+        var postForm = { //Fetch form data
+            'username': $('.input-username').val(),
+            'telephone': $('.input-tel').val(),
+            'items':[],
+            'id_user':$('.input-id-user-baket').val(),
+        };
+        const parent=document.querySelector('.js-cart-basket');
+        const basketItems=parent.querySelectorAll('.input-basket-item');
+        basketItems.forEach((el)=>{
+            postForm.items.push(el.getAttribute('data-basketitemid'));
+        })
+        console.log(postForm);
+        // $.ajax({ //Process the form using $.ajax()
+        //     type: 'POST', //Method type
+        //     url: 'app/controllers/cart-order-ajax.php', //Your form processing file URL
+        //     data: postForm, //Forms name
+        //     dataType: 'html',
+        //     success: function (data) {
+        //         alert('Ожидайте доставки');
+        //     }
+        // });
+    })
+}

@@ -66,6 +66,41 @@ include 'app/controllers/cart/cart-controller.php'
                         <?php endforeach;?>
                     </div>
                 </div>
+                <div class="detail-body__item detail-body-hidden js-cart-basket">
+                    <div class="basket-item">
+                        <div class="card-form">
+                            <div class="card-form-wrapper">
+                                <h2 class="card-form__title title-clash title-clash-2">Оформление заказа</h2>
+                                <form  method="post" class="card-form-form">
+
+                                    <p class="Error">
+                                        <?=$errMsg?>
+                                    </p>
+                                    <p>
+                                        <?= $email?>
+                                    </p>
+                                    <div class="card-form-form__item">
+                                        <div class="input-label">
+                                            <input type="hidden" class="input-id-user-baket" value="<?=$_SESSION['id']?>" >
+                                            <?php foreach ($cartArray as $key=>$item):?>
+                                            <input type="hidden" class="input-basket-item" data-basketitemid="<?=$item['id']?>">
+                                            <?php endforeach;?>
+                                            <input type="text" name="username" placeholder="Имя получателя" class="input-label__input input input-username">
+                                        </div>
+                                    </div>
+                                    <div class="card-form-form__item">
+                                        <div class="input-label">
+                                            <input type="tel" name="telephone" placeholder="Введите телефон" class="input-label__input input input-tel">
+                                        </div>
+                                    </div>
+                                    <div class="card-form-form__item">
+                                        <button name="" type="button" class="card-form-form__button button button-dark-purple button-no-border js-cart-basket-button">Добавить</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
