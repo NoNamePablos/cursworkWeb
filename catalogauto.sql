@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 21 2022 г., 14:49
+-- Время создания: Ноя 24 2022 г., 13:13
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.21
 
@@ -93,6 +93,44 @@ CREATE TABLE `brand` (
 INSERT INTO `brand` (`id`, `name`, `country`) VALUES
 ('637b4199ef3f2', 'Mercedes-Benz', 'Europe'),
 ('637b47eea1e19', 'Jaguar', 'Europe');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart-order`
+--
+
+CREATE TABLE `cart-order` (
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
+  `username` int NOT NULL,
+  `id_status` int NOT NULL,
+  `telephone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_auto` int NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart-status`
+--
+
+CREATE TABLE `cart-status` (
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `cart-status`
+--
+
+INSERT INTO `cart-status` (`id`, `name`, `description`) VALUES
+(1, 'В работе', NULL),
+(2, 'Доставляется', NULL),
+(3, 'Доставлено', NULL);
 
 -- --------------------------------------------------------
 
@@ -193,6 +231,18 @@ ALTER TABLE `brand`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `cart-order`
+--
+ALTER TABLE `cart-order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `cart-status`
+--
+ALTER TABLE `cart-status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `specifications`
 --
 ALTER TABLE `specifications`
@@ -227,6 +277,18 @@ ALTER TABLE `automobile`
 --
 ALTER TABLE `auto_comments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT для таблицы `cart-order`
+--
+ALTER TABLE `cart-order`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `cart-status`
+--
+ALTER TABLE `cart-status`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `specifications`
