@@ -5,9 +5,11 @@
             <a href="<?=BASE_URL?>catalog.php" class="header__list-link">Каталог</a>
         </div>
         <div class="header__top-right">
-            <a href="<?=BASE_URL?>authorization.php" class="header__cart">
+            <?php if($_SESSION['id']):?>
+            <a href="<?=BASE_URL?>cart.php" class="header__cart">
                 <img src="<?=BASE_URL?>/assets/img/UI/Shopping--cart.svg" alt="Cart" />
             </a>
+            <?php endif;?>
             <div class="header__user-container">
                 <?php if(isset($_SESSION['id'])):?>
                 <a href="<?=BASE_URL?>authorization.php" class="header__user js-popup">
@@ -31,6 +33,12 @@
                     <a href="<?=BASE_URL?>admin/catalog/index.php" class="header__user-menu-link">Админка</a>
                 </li>
                 <?php endif;?>
+                <?php if($_SESSION["id"]):?>
+                    <li class="header__user-menu-item ">
+                        <a href="<?=BASE_URL?>order.php" class="header__user-menu-link">Доставка</a>
+                    </li>
+                <?php endif;?>
+
                 <li class="header__user-menu-item header__user-menu-mobile">
                     <a href="" class="header__user-menu-link">Каталог</a>
                 </li>

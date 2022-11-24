@@ -41,6 +41,10 @@ if($_SERVER['REQUEST_METHOD']==='POST' && (isset($_POST['btn-registration'])||is
             $_SESSION['id'] = $user['id'];
             $_SESSION['login']=$user['login'];
             $_SESSION['admin']=$user['admin'];
+            $_SESSION['totalPrice']=0;
+            if (!isset($_SESSION['favourites'])) {
+                $_SESSION['favourites'] = array();
+            }
             if(isset($_POST['btn-registration-admin'])){
                 header('location: '. BASE_URL . 'admin/users/index.php');
             }else{
@@ -71,7 +75,10 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
             $_SESSION['id']=$checkAuthMail['id'];
             $_SESSION['login']=$checkAuthMail['login'];
             $_SESSION['admin']=$checkAuthMail['admin'];
-
+            $_SESSION['totalPrice']=0;
+            if (!isset($_SESSION['favourites'])) {
+                $_SESSION['favourites'] = array();
+            }
            /* if($_SESSION['admin']){
                 header('location: /' . 'admin/fitness/index.php');
             }else{

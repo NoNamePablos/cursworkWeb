@@ -3,6 +3,7 @@ include 'app/settings/path.php';
 include 'app/settings/db_functions.php';
 include 'app/controllers/users.php';
 include 'app/controllers/catalog-auto.php';
+include 'app/controllers/cart/cart-controller.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -177,9 +178,15 @@ include 'app/controllers/catalog-auto.php';
                     </div>
                     <div class="detail-payment-availabile">В наличие</div>
                     <div class="detail-payment-buttons">
+                        <?php if(!itemInCart($auto['id'])):?>
                         <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
                             Добавить в избранное
                         </button>
+                        <?php else:?>
+                        <button data-carid="<?=$auto['id']?>" class="button-disabled button button-no-border button-primary">
+                            Добавить в избранное
+                        </button>
+                        <?php endif;?>
                         <button class="button button-no-border button-dark-purple js-animation">
                             Смотреть отзывыв
                         </button>

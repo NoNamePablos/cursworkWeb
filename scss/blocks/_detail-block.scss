@@ -49,6 +49,9 @@
     }
     &-body{
         width: calc(100% - 375px);
+        &-hidden{
+            display: none;
+        }
         &>*+*{
             margin-top: 50px;
         }

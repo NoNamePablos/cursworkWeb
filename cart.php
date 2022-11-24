@@ -22,13 +22,11 @@ include 'app/controllers/cart/cart-controller.php'
     <?php include('app/snippets/header.php'); ?>
     <div class="subheader">
         <h1 class="subheader__title title-clash title-clash-2">
-            Продажа автомобилей с пробегом в Москве
+            Заказ
         </h1>
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= BASE_URL ?>index.php" class="breadcrumb-link">Главная</a></li>
-            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>catalog.php" class="breadcrumb-link">Каталог</a></li>
-            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>detail.php/cardid=<?= $auto['id'] ?>"
-                                           class="breadcrumb-link"><?= $auto['full_name'] ?></a></li>
+            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>cart.php" class="breadcrumb-link">Заказ</a></li>
         </ul>
     </div>
     <div class="detail basket">
@@ -40,14 +38,14 @@ include 'app/controllers/cart/cart-controller.php'
                             <p>Итого:</p>
                             <p class="basket-price__total"><?=$_SESSION['totalPrice']?>₽</p>
                         </div>
-                        <button class="button button-no-border button-primary">Оформить заказ</button>
+                        <button class="button button-no-border button-primary js-cart-form">Оформить заказ</button>
                         <!--                        <button class="button-remove"></button>-->
                     </div>
                 </div>
                 <div class="detail-body__item">
                     <div class="basket-item">
                         <p class="basket-count">В корзине <?=count($cartArray)?> товар</p>
-                        <button class="button button-no-border button-primary">Очистить</button>
+                        <button class="button button-no-border button-primary js-remove-all">Очистить</button>
 <!--                        <button class="button-remove"></button>-->
                     </div>
                 </div>
@@ -91,6 +89,11 @@ include 'app/controllers/cart/cart-controller.php'
                                     <div class="card-form-form__item">
                                         <div class="input-label">
                                             <input type="tel" name="telephone" placeholder="Введите телефон" class="input-label__input input input-tel">
+                                        </div>
+                                    </div>
+                                    <div class="card-form-form__item">
+                                        <div class="input-label">
+                                            <input type="address" name="telephone" placeholder="Введите телефон" class="input-address input-label__input input">
                                         </div>
                                     </div>
                                     <div class="card-form-form__item">

@@ -106,10 +106,36 @@ if(document.querySelector('.js-cart')){
                 alert('Добавлено в корзину');
             }
         });
+        btn.classList.add('button-disabled');
     })
+}
+if(document.querySelector('.js-remove-all')){
+    const btn=document.querySelector('.js-remove-all');
+    const parent=document.querySelectorAll('.basket-card__item');
+    btn.addEventListener('click',()=>{
+        $.ajax({
+            url: 'app/controllers/cart/cart-ajax.php',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'remove_all':true,
+            },
+            success: function (data) {
+                document.querySelector(".basket-price__total").textContent=`${data}₽`;
+                const parent1=document.querySelector('.js-cart-basket');
+                let count=document.querySelector('.basket-count');
+                parent.forEach((el)=>{
+                    el.remove();
+                });
+                parent1.classList.add('detail-body-hidden');
+                count.textContent=`В корзине ${0} товаров`;
+            }
+        });
+    });
 }
 if(document.querySelectorAll('.js-remove').length>0){
     const btn=document.querySelectorAll('.js-remove');
+
     btn.forEach((el)=>{
         el.addEventListener('click',()=>{
             const parent=el.closest('.basket-card__item');
@@ -127,32 +153,71 @@ if(document.querySelectorAll('.js-remove').length>0){
                     console.log(data);
                     document.querySelector(".basket-price__total").textContent=`${data}₽`;
                     parent.remove();
+
+                        const parent1=document.querySelector('.js-cart-basket');
+                        const basketItems=parent1.querySelectorAll('.basket-card__item');
+                        let cartItems=[];
+                        let count=document.querySelector('.basket-count');
+                    basketItems.forEach((el)=>{
+                            cartItems.push(el.getAttribute('data-cardid'));
+                        })
+                        if(cartItems.length>0){
+                            count.textContent=`В корзине ${cartItems.length} товар`;
+                            parent1.classList.remove('detail-body-hidden');
+                        }else{
+                            parent1.classList.add('detail-body-hidden');
+                            count.textContent=`В корзине ${0} товаров`;
+                        }
                 }
             });
         })
     })
 }
+if(document.querySelector('.js-cart-form')){
+    const btn=document.querySelector('.js-cart-form');
+    const parent=document.querySelector('.js-cart-basket');
+    const basketItems=parent.querySelectorAll('.input-basket-item');
+    let cartItems=[];
+    basketItems.forEach((el)=>{
+        cartItems.push(el.getAttribute('data-basketitemid'));
+    })
+    btn.addEventListener('click',()=>{
+        const form=document.querySelector('.js-cart-basket');
+
+        console.log(cartItems);
+        if(cartItems.length>0){
+            console.log(1);
+            parent.classList.remove('detail-body-hidden');
+        }else{
+            parent.classList.add('detail-body-hidden');
+        }
+
+    })
+
+}
 
 if(document.querySelector('.js-cart-basket')){
-
     const btn=document.querySelector('.js-cart-basket-button');
-
     btn.addEventListener('click',()=>{
         var postForm = { //Fetch form data
             'username': $('.input-username').val(),
             'telephone': $('.input-tel').val(),
+            'address':$('.input-address').val(),
             'items':[],
             'id_user':$('.input-id-user-baket').val(),
         };
-        const parent=document.querySelector('.js-cart-basket');
-        const basketItems=parent.querySelectorAll('.input-basket-item');
-        basketItems.forEach((el)=>{
-            postForm.items.push(el.getAttribute('data-basketitemid'));
+        //eror
+        const parent1=document.querySelector('.js-cart-basket');
+        const basketItems1=parent1.querySelectorAll('.basket-card__item');
+        let cartItems=[];
+        basketItems1.forEach((el)=>{
+            console.log(el);
+            cartItems.push(el.getAttribute('data-cardid'));
         })
-        console.log(postForm);
+        console.log('11',cartItems);
         // $.ajax({ //Process the form using $.ajax()
         //     type: 'POST', //Method type
-        //     url: 'app/controllers/cart-order-ajax.php', //Your form processing file URL
+        //     url: 'app/controllers/order/order-ajax.php', //Your form processing file URL
         //     data: postForm, //Forms name
         //     dataType: 'html',
         //     success: function (data) {

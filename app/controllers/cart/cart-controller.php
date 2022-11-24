@@ -11,5 +11,16 @@ if(isset($_SESSION['favourites'])){
         }
     }
     $_SESSION['totalPrice']=$totalPrice;
+}
 
+
+function itemInCart($id){
+    if(count($_SESSION['favourites'])>0){
+        foreach ($_SESSION['favourites'] as $key => $value) {
+            if ($value ==$id) {
+                return true;
+            }
+        }
+    }
+    return false;
 }

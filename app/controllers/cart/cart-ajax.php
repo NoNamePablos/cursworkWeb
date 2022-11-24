@@ -2,6 +2,16 @@
 include "../../settings/path.php";
 include "../../settings/db_functions.php";
 
+//Это php заглушка которая обрабатывает AJAX (Корзина)
+
+if(isset($_POST['remove_all'])){
+    foreach ($_SESSION['favourites'] as $key => $value) {
+            unset($_SESSION['favourites'][$key]);
+    }
+    $_SESSION['totalPrice']=0;
+    echo 0;
+    exit();
+}
 if (isset($_POST['id_auto'])) {
     $fav_id = $_POST['id_auto'];
     if (!isset($_SESSION['favourites'])) {
