@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 24 2022 г., 13:13
+-- Время создания: Ноя 26 2022 г., 01:14
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.21
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `automobile` (
   `id` int NOT NULL,
-  `full_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `full_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `price` int NOT NULL,
   `year` bigint NOT NULL,
-  `id_brand` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `img_preview` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_brand` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `img_preview` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` tinyint NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `on_top` tinyint DEFAULT '0'
@@ -57,8 +57,8 @@ CREATE TABLE `auto_comments` (
   `id` int NOT NULL,
   `id_auto` int NOT NULL,
   `id_user` int NOT NULL,
-  `review_positiv_text` text COLLATE utf8mb4_general_ci NOT NULL,
-  `review_negative_text` text COLLATE utf8mb4_general_ci NOT NULL,
+  `review_positiv_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `review_negative_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `score_scope` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -81,9 +81,9 @@ INSERT INTO `auto_comments` (`id`, `id_auto`, `id_user`, `review_positiv_text`, 
 --
 
 CREATE TABLE `brand` (
-  `id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -97,40 +97,49 @@ INSERT INTO `brand` (`id`, `name`, `country`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cart-order`
+-- Структура таблицы `cart_order`
 --
 
-CREATE TABLE `cart-order` (
+CREATE TABLE `cart_order` (
   `id` int NOT NULL,
   `id_user` int NOT NULL,
-  `username` int NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `id_status` int NOT NULL,
-  `telephone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_auto` int NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status_cancel` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `cart_order`
+--
+
+INSERT INTO `cart_order` (`id`, `id_user`, `username`, `id_status`, `telephone`, `address`, `id_auto`, `created_date`, `status_cancel`) VALUES
+(2, 4, 'fdsfdsaf', 4, '54354354335', 'gfdsf dfsg gds gsdg d', 6, '2022-11-25 20:38:37', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cart-status`
+-- Структура таблицы `cart_status`
 --
 
-CREATE TABLE `cart-status` (
+CREATE TABLE `cart_status` (
   `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп данных таблицы `cart-status`
+-- Дамп данных таблицы `cart_status`
 --
 
-INSERT INTO `cart-status` (`id`, `name`, `description`) VALUES
+INSERT INTO `cart_status` (`id`, `name`, `description`) VALUES
 (1, 'В работе', NULL),
 (2, 'Доставляется', NULL),
-(3, 'Доставлено', NULL);
+(3, 'Доставлено', NULL),
+(4, 'Отменена', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,11 +150,11 @@ INSERT INTO `cart-status` (`id`, `name`, `description`) VALUES
 CREATE TABLE `specifications` (
   `id` int NOT NULL,
   `engine_power` int DEFAULT NULL,
-  `engine` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `privod` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_general_ci,
+  `engine` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `privod` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `id_auto` int NOT NULL,
-  `transmission` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `transmission` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -165,7 +174,7 @@ INSERT INTO `specifications` (`id`, `engine_power`, `engine`, `privod`, `descrip
 CREATE TABLE `upload_table` (
   `id` int NOT NULL,
   `id_auto` int NOT NULL,
-  `img` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -192,12 +201,12 @@ INSERT INTO `upload_table` (`id`, `id_auto`, `img`, `video`) VALUES
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `login` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `login` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `admin` tinyint NOT NULL DEFAULT '0',
-  `change_key` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `change_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -231,15 +240,15 @@ ALTER TABLE `brand`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `cart-order`
+-- Индексы таблицы `cart_order`
 --
-ALTER TABLE `cart-order`
+ALTER TABLE `cart_order`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `cart-status`
+-- Индексы таблицы `cart_status`
 --
-ALTER TABLE `cart-status`
+ALTER TABLE `cart_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -279,16 +288,16 @@ ALTER TABLE `auto_comments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT для таблицы `cart-order`
+-- AUTO_INCREMENT для таблицы `cart_order`
 --
-ALTER TABLE `cart-order`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cart_order`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `cart-status`
+-- AUTO_INCREMENT для таблицы `cart_status`
 --
-ALTER TABLE `cart-status`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `cart_status`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `specifications`
