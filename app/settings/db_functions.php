@@ -118,7 +118,7 @@ function  update($table,$id,$params){
 
 }
 //Обновить в бд
-function updateFitness($table, $id, $params){
+function updateOrder($table, $id, $params){
     global  $pdo;
     $i=0;
     $str='';
@@ -133,7 +133,7 @@ function updateFitness($table, $id, $params){
 
         $i++;
     }
-    $sql="UPDATE $table SET $str WHERE id_fitness = $id ";
+    $sql="UPDATE $table SET $str WHERE id_user = $id ";
     $query=$pdo->prepare($sql);
 
     $query->execute($params);
@@ -247,6 +247,54 @@ function selectAllFromFitnessWitUsersWithStatus($table1, $table2, $status){
     dbCheckError($query);
     return $query->fetchAll();
 }
+function selectAllOrderParams($cart, $users, $cart_status,$auto,$id){
+	global $pdo;
+	$sql="SELECT
+       t1.id,
+       t1.username,
+       t1.telephone,
+       t1.address,
+       t1.created_date,
+       t1.status_cancel,
+       t2.login,
+       t3.name,
+       t4.full_name,
+       t4.price,
+       t4.img_preview,
+       t4.year
+       FROM $cart AS t1 JOIN $users AS t2 ON t1.id_user=t2.id JOIN $cart_status AS t3 ON t1.id_status=t3.id JOIN $auto AS t4 ON t1.id_auto=t4.id AND t1.id_user=$id";
+	$query=$pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
+	return $query->fetchAll();
+}
+function selectAllOrder($cart, $users, $cart_status,$auto){
+	global $pdo;
+	$sql="SELECT
+       t1.id,
+       t1.username,
+       t1.telephone,
+       t1.address,
+       t1.created_date,
+       t1.status_cancel,
+       t2.login,
+       t3.name,
+       t4.full_name,
+       t4.price,
+       t4.img_preview,
+       t4.year
+       FROM $cart AS t1 JOIN $users AS t2 ON t1.id_user=t2.id JOIN $cart_status AS t3 ON t1.id_status=t3.id JOIN $auto AS t4 ON t1.id_auto=t4.id";
+	$query=$pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
+	return $query->fetchAll();
+}
+
+
+
+
+
+
 function countRow($table1){
     global $pdo;
     $sql="SELECT COUNT(*) FROM $table1 WHERE status= 1";

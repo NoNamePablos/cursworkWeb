@@ -3,7 +3,8 @@ include 'app/settings/path.php';
 include 'app/settings/db_functions.php';
 include 'app/controllers/users.php';
 include 'app/controllers/catalog-auto.php';
-include 'app/controllers/cart/cart-controller.php'
+include 'app/controllers/cart/cart-controller.php';
+include 'app/controllers/order/order-controller.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,19 +30,29 @@ include 'app/controllers/cart/cart-controller.php'
             <li class="breadcrumb-item"><a href="<?= BASE_URL ?>order.php" class="breadcrumb-link">Доставка</a></li>
         </ul>
     </div>
+    <?php if($_SESSION['id']):?>
     <div class="detail basket">
         <div class="detail__container">
             <div class="detail-body">
                 <div class="detail-body__item">
                     <div class="basket-card">
-                        <?php foreach ($cartArray as $key=>$item):?>
-                            <div class="basket-card__item" data-cardid="<?=$item['id']?>">
+                        <?php foreach ($order_cart as $key=>$item):?>
+                            <div class="basket-card__item" data-cardid="<?=$item['id_auto']?>" data-orderid="<?=$item['id']?>">
                                 <img src="<?=BASE_URL?>/upload/assets/img/cars/<?=$item['img_preview']?>">
                                 <div class="basket-card__column">
                                     <span class="basket-card__title"><?=$item['full_name']?></span>
                                     <span><?=$item['year']?></span>
                                 </div>
-                                <span class="basket-card__price"><?=$item['price'];?>₽</span>
+                                <div class="basket-card__column">
+                                    <span class="basket-card__price"><?=$item['price'];?>₽</span>
+                                    <span class="basket-cart__status-delivery"><?=$item['name']?></span>
+                                    <?php if(!$item['status_cancel']):?>
+                                    <button type="button" class="button button-danger js-order-cancel">Отменить</button>
+                                    <?php else:?>
+                                    <button type="button" class="button button-danger button-disabled">Отменить</button>
+                                    <?php endif;?>
+
+                                </div>
                             </div>
                         <?php endforeach;?>
                     </div>
@@ -50,6 +61,7 @@ include 'app/controllers/cart/cart-controller.php'
             </div>
         </div>
     </div>
+    <?php endif;?>
     <?php include('app/snippets/footer.php') ?>
 </div>
 <script src="./assets/js/vendor/jquery.js"></script>
