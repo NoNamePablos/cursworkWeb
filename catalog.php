@@ -44,7 +44,7 @@ include 'app/controllers/catalog-filter.php'
                 </div>
                 <div class="filter-card__body">
                   <div class="filter-card__wrapper filter-card-flex">
-                    <div class="filter-card__list">
+                    <div class="filter-card__list filter-card-brand">
                         <?php foreach ($brands as $key => $brand):?>
                         <label
                                 for="<?=$brand['id']?>" data-filterid="<?=$brand['id']?>"
@@ -99,14 +99,14 @@ include 'app/controllers/catalog-filter.php'
                   ></i>
                 </div>
                 <div class="filter-card__body">
-                  <div class="filter-card__wrapper filter-card-flex">
+                  <div class="filter-card__wrapper filter-card-flex filter-card-pricevalue">
                     <div class="input-label">
                       <input
                         type="number"
                         min="100000"
                         max="2999999"
                         placeholder="100 000"
-                        class="input-label__input input" />
+                        class="input-label__input input input-first" />
                     </div>
                     <div class="input-label">
                       <input
@@ -114,7 +114,7 @@ include 'app/controllers/catalog-filter.php'
                         min="100000"
                         max="2999999"
                         placeholder="2 999 999"
-                        class="input-label__input input" />
+                        class="input-label__input input input-second" />
                     </div>
                   </div>
                 </div>
@@ -135,14 +135,14 @@ include 'app/controllers/catalog-filter.php'
                   ></i>
                 </div>
                 <div class="filter-card__body">
-                  <div class="filter-card__wrapper filter-card-flex">
+                  <div class="filter-card__wrapper filter-card-flex filter-card-yearvalue">
                     <div class="input-label">
                       <input
                         type="number"
                         min="2002"
                         max="2022"
                         placeholder="2002"
-                        class="input-label__input input" />
+                        class="input-label__input input input-first" />
                     </div>
                     <div class="input-label">
                       <input
@@ -150,11 +150,16 @@ include 'app/controllers/catalog-filter.php'
                               min="2002"
                               max="2022"
                               placeholder="2022"
-                              class="input-label__input input"/>
+                              class="input-label__input input input-second"/>
                     </div>
                   </div>
                 </div>
               </div>
+                <div class="wrap">
+                    <button type="button" class="sign-up__button button button-danger button-filter">
+                        <span>Фильтровать</span>
+                    </button>
+                </div>
             </form>
           </aside>
             <section class="catalog-cards">
@@ -188,6 +193,30 @@ include 'app/controllers/catalog-filter.php'
       </div>
 	    <?php include('app/snippets/footer.php'); ?>
     </div>
+    <script id="goods-template" type="text/template">
+        <li class="catalog-grid__item">
+            <div class="card-product">
+                <a href="<?= BASE_URL ?>detail.php?carid=${id}"
+                   class="card-product__link"></a>
+                <img
+                        src="<?= BASE_URL . '/upload/assets/img/cars/' ?>${img_preview}"
+                        alt=" ${full_name}"
+                        class="card-product__img"/>
+                <div class="card-product__description">
+                    <h4 class="title-clash title-clash-4 card-product__title">
+					    ${full_name}
+                    </h4>
+                    <p
+                            class="title-satoshi title-satoshi-body-large card-product__price">
+					    ${price} <span>₽/шт</span>
+                    </p>
+                </div>
+            </div>
+        </li>
+    </script>
+    <script src="./assets/js/vendor/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="/assets/js/main.js"></script>
   </body>
 </html>

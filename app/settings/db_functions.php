@@ -211,6 +211,38 @@ function selectAllAutoAndBrand($table1, $table2)
     return $query->fetchAll();
 }
 
+function selectAllAutoAndBrandCatalog($table1, $table2,$options)
+{
+	global $pdo;
+	$minPrice = $options['min_price'];
+	$maxPrice = $options['max_price'];
+	$minYear = $options['min_year'];
+	$maxYear = $options['max_year'];
+	$brands = implode(',',$options['brands']);
+
+	$brandsWhere =
+		($brands !== null)
+			? " t1.id_brand in ($brands) and "
+			: ' ';
+
+	$sql = "SELECT
+       t1.id,
+       t1.full_name,
+       t1.status,
+       t1.price,
+       t1.year,
+       t1.created_date,
+       t1.img_preview,
+       t2.name,
+       t2.country
+       FROM $table1 AS t1 JOIN $table2 AS t2 ON $brandsWhere (t1.price BETWEEN $minPrice AND $maxPrice) AND (t1.year BETWEEN $minYear AND $maxYear)";
+
+	$query=$pdo->prepare($sql);
+	$query->execute();
+	dbCheckError($query);
+	return $query->fetchAll();
+}
+
 
 function selectAllFromSubsWitUsers($table1,$table2){
     global $pdo;

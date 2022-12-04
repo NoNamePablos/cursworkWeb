@@ -293,6 +293,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['deletefav_id'])) {
 		}
 	}
 }
+
+
+
+
 //   $password=password_hash($_POST['password-second'],PASSWORD_DEFAULT);
 /*$id=insert('users',$arrData);
 $lastRow=selectOne('users',['id'=>$id]);*/
