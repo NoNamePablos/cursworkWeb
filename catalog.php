@@ -104,7 +104,7 @@ include 'app/controllers/catalog-filter.php'
                       <input
                         type="number"
                         min="100000"
-                        max="2999999"
+                        max="999999999"
                         placeholder="100 000"
                         class="input-label__input input input-first" />
                     </div>
@@ -112,8 +112,8 @@ include 'app/controllers/catalog-filter.php'
                       <input
                         type="number"
                         min="100000"
-                        max="2999999"
-                        placeholder="2 999 999"
+                        max="999999999"
+                        placeholder="999 999 999"
                         class="input-label__input input input-second" />
                     </div>
                   </div>
@@ -165,8 +165,12 @@ include 'app/controllers/catalog-filter.php'
             <section class="catalog-cards">
                 <ul class="catalog-grid">
 			        <?php foreach ($catalog as $key => $catalogItem): ?>
-                        <li class="catalog-grid__item">
-                            <div class="card-product">
+                        <?php if($key>5):?>
+                        <li class="catalog-grid__item catalog-grid--hidden ">
+                         <?php else:?>
+                            <li class="catalog-grid__item ">
+                        <?php endif;?>
+                            <div class="card-product" data-ddd="">
                                 <a href="<?= BASE_URL ?>detail.php?carid=<?= $catalogItem['id'] ?>"
                                    class="card-product__link"></a>
                                 <img
@@ -214,8 +218,29 @@ include 'app/controllers/catalog-filter.php'
             </div>
         </li>
     </script>
+    <script id="hidden-template" type="text/template">
+        <li class="catalog-grid__item catalog-grid--hidden">
+            <div class="card-product">
+                <a href="<?= BASE_URL ?>detail.php?carid=${id}"
+                   class="card-product__link"></a>
+                <img
+                        src="<?= BASE_URL . '/upload/assets/img/cars/' ?>${img_preview}"
+                        alt=" ${full_name}"
+                        class="card-product__img"/>
+                <div class="card-product__description">
+                    <h4 class="title-clash title-clash-4 card-product__title">
+                        ${full_name}
+                    </h4>
+                    <p
+                            class="title-satoshi title-satoshi-body-large card-product__price">
+                        ${price} <span>₽/шт</span>
+                    </p>
+                </div>
+            </div>
+        </li>
+    </script>
     <script src="./assets/js/vendor/jquery.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="assets/js/vendor/jqueryTemplate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="/assets/js/main.js"></script>
   </body>

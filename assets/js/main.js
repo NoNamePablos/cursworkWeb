@@ -244,7 +244,7 @@ if(document.querySelector('.js-cart-basket')){
         });
     })
 }
-
+let catalogList=[];
 
 function catalogFilter(){
     let form={
@@ -322,10 +322,33 @@ function catalogFilter(){
                 cards.forEach((el)=>{
                     el.remove();
                 })
-                $("#goods-template").tmpl(list).appendTo(".catalog-grid");
+                if(list.length>6){
+                    catalogList=list;
+                    $("#goods-template").tmpl(list.slice(0,6)).appendTo(".catalog-grid");
+                    catalogList=catalogList.slice(6,catalogList.length);
+                    console.log('ddd');
+                    console.log(catalogList);
+                    $("#hidden-template").tmpl(catalogList).appendTo(".catalog-grid");
+                }
             }
         }
     });
+
+}
+if(document.querySelector('.js-show-more-catalog')){
+    let btn=document.querySelector('.js-show-more-catalog');
+    btn.addEventListener('click',()=>{
+        let hiddenCards=document.querySelectorAll('.catalog-grid--hidden');
+        if(hiddenCards.length>0){
+            for (let i=0;i<hiddenCards.length;i++){
+                if(i<6){
+                    hiddenCards[i].classList.remove('catalog-grid--hidden');
+                }
+            }
+        }else{
+            btn.classList.add('button-disabled');
+        }
+    })
 }
 
 

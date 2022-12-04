@@ -44,7 +44,7 @@ include '../../app/controllers/catalog-auto.php';
 						<?php foreach ($catalog as $key => $catalogItem): ?>
                             <tr>
                                 <td><?= $catalogItem['id'] ?></td>
-                                <td><?= $catalogItem['full_name'] ?>/td>
+                                <td><?= $catalogItem['full_name'] ?></td>
                                 <td><?= $catalogItem['name'] ?></td>
                                 <td><?= $catalogItem['price'] ?></td>
                                 <td><?= $catalogItem['year'] ?></td>

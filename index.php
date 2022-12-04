@@ -2,6 +2,7 @@
 include 'app/settings/path.php';
 include 'app/settings/db_functions.php';
 include 'app/controllers/users.php';
+include 'app/controllers/catalog-auto.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,7 @@ include 'app/controllers/users.php';
                 автомобилей непосредственно из автосалона.
               </p>
             </div>
-            <a href="/" class="card-info__button button button-danger"
+            <a href="<?= BASE_URL ?>catalog.php" class="card-info__button button button-danger"
               >Посмотреть авто</a
             >
           </div>
@@ -219,84 +220,31 @@ include 'app/controllers/users.php';
           <h3 class="products__title">Топовые предложения</h3>
         </div>
         <ul class="products__list">
-          <li class="products__item">
-            <div class="card-product">
-              <a href="/" class="card-product__link"></a>
-              <img
-                src="/upload/assets/img/cars/car-admin.jpg"
-                :alt=""
-                class="card-product__img" />
-              <div class="card-product__description">
-                <h4 class="title-clash title-clash-4 card-product__title">
-                  Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD Coupe
-                  2016
-                </h4>
-                <p
-                  class="title-satoshi title-satoshi-body-large card-product__price">
-                  6 390 000 <span>₽/шт</span>
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="products__item">
-            <div class="card-product">
-              <a href="/" class="card-product__link"></a>
-              <img
-                src="/upload/assets/img/cars/car-admin.jpg"
-                :alt=""
-                class="card-product__img" />
-              <div class="card-product__description">
-                <h4 class="title-clash title-clash-4 card-product__title">
-                  Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD Coupe
-                  2016
-                </h4>
-                <p
-                  class="title-satoshi title-satoshi-body-large card-product__price">
-                  6 390 000 <span>₽/шт</span>
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="products__item">
-            <div class="card-product">
-              <a href="/" class="card-product__link"></a>
-              <img
-                src="/upload/assets/img/cars/car-admin.jpg"
-                :alt=""
-                class="card-product__img" />
-              <div class="card-product__description">
-                <h4 class="title-clash title-clash-4 card-product__title">
-                  Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD Coupe
-                  2016
-                </h4>
-                <p
-                  class="title-satoshi title-satoshi-body-large card-product__price">
-                  6 390 000 <span>₽/шт</span>
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="products__item">
-            <div class="card-product">
-              <a href="/" class="card-product__link"></a>
-              <img
-                src="/upload/assets/img/cars/car-admin.jpg"
-                :alt=""
-                class="card-product__img" />
-              <div class="card-product__description">
-                <h4 class="title-clash title-clash-4 card-product__title">
-                  Jaguar F-Type 3.0 S/C F-Type British Design Edition AWD Coupe
-                  2016
-                </h4>
-                <p
-                  class="title-satoshi title-satoshi-body-large card-product__price">
-                  6 390 000 <span>₽/шт</span>
-                </p>
-              </div>
-            </div>
-          </li>
+            <?php foreach ($catalog as $key => $catalogItem): ?>
+                <?php if($key<4):?>
+                    <li class="products__item ">
+                        <div class="card-product" >
+                    <a href="<?= BASE_URL ?>detail.php?carid=<?= $catalogItem['id'] ?>"
+                       class="card-product__link"></a>
+                    <img
+                            src="<?= BASE_URL . '/upload/assets/img/cars/' . $catalogItem['img_preview']; ?>"
+                            alt="<?= $catalogItem['full_name'] ?>"
+                            class="card-product__img"/>
+                    <div class="card-product__description">
+                        <h4 class="title-clash title-clash-4 card-product__title">
+                            <?= $catalogItem['full_name'] ?>
+                        </h4>
+                        <p
+                                class="title-satoshi title-satoshi-body-large card-product__price">
+                            <?= $catalogItem['price'] ?> <span>₽/шт</span>
+                        </p>
+                    </div>
+                </div>
+                </li>
+            <?php endif;?>
+            <?php endforeach; ?>
         </ul>
-        <a href="" class="products__button button button-danger"
+        <a href="<?= BASE_URL ?>catalog.php" class="products__button button button-danger"
           >Смотреть католог</a
         >
       </div>

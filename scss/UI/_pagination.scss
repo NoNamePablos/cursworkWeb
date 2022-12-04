@@ -3,6 +3,7 @@
     &>*+*{
         margin-left: 10px;
     }
+
     &__item{
         width: 25px;
         height: 25px;
@@ -34,5 +35,12 @@
                 color: var(--color-white);
             }
         }
+    }
+}
+.pagination{
+    &-button{
+        width: 100%;
+        height: 60px;
+        margin-top: 40px;
     }
 }
