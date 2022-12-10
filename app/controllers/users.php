@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
                 $_SESSION['favourites'] = array();
             }
            /* if($_SESSION['admin']){
-                header('location: /' . 'admin/fitness/index.php');
+
             }else{
                 header('location: /' );
             }*/
@@ -182,7 +182,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['create-user'])){
             ];
             $id=insert('users',$arrData);
             $isSubmit=true;
-            header('location: '.BASE_URL . 'admin/fitness/index.php');
+            header('location: '.BASE_URL . 'admin/users/index.php');
         }
 
     }
