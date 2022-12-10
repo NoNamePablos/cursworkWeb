@@ -353,15 +353,30 @@ function catalogFilter(){
                 cards.forEach((el)=>{
                     el.remove();
                 })
-                if(list.length<6){
-                    catalogList=list;
-                    $("#goods-template").tmpl(list.slice(0,6)).appendTo(".catalog-grid");
-                    catalogList=catalogList.slice(6,catalogList.length);
+                if(list.length!=0){
+                    for(let i=0;i<list.length;i++){
+                        if(i<6){
+                            $("#goods-template").tmpl(list[i]).appendTo(".catalog-grid");
+                        }else{
+                            $("#hidden-template").tmpl(list[i]).appendTo(".catalog-grid");
+                        }
+                    }
                 }else{
-                    console.log('ddd');
-                    console.log(catalogList);
-                    $("#hidden-template").tmpl(catalogList).appendTo(".catalog-grid");
+                    let div=document.createElement('div');
+                    div.innerText=`Пусто(`;
+                    document.querySelector('.catalog-grid').appendChild(div);
                 }
+
+                // if(list.length<=6){
+                //     catalogList=list;
+                //     $("#goods-template").tmpl(list.slice(0,6)).appendTo(".catalog-grid");
+                //     catalogList=catalogList.slice(6,catalogList.length);
+                // }else{
+                //     console.log('ddd');
+                //     console.log(catalogList);
+                //     $("#hidden-template").tmpl(catalogList).appendTo(".catalog-grid");
+                // }
+                //
             }
         }
     });

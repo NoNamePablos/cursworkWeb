@@ -165,8 +165,9 @@ include 'app/controllers/catalog-filter.php'
                         </li>
 			        <?php endforeach; ?>
                     <!--Pagination-->
-	                <?php include("app/snippets/pagination.php") ?>
+
                 </ul>
+	            <?php include("app/snippets/pagination.php") ?>
 
             </section>
         </div>
