@@ -105,6 +105,10 @@ include 'app/controllers/cart/cart-controller.php'
                     </div>
                 </div>
             </div>
+            <div class="detail-body-close detail-body-hidden">
+                <div>Спасибо за заказ!</div>
+                <a class="button button-no-border button-primary" style="margin-top: 20px;" href="<?BASE_URL?>/">На главную</a>
+            </div>
         </div>
     </div>
     <?php include('app/snippets/footer.php') ?>

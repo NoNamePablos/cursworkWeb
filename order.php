@@ -36,7 +36,8 @@ include 'app/controllers/order/order-controller.php';
             <div class="detail-body">
                 <div class="detail-body__item">
                     <div class="basket-card">
-                        <?php foreach ($order_cart as $key=>$item):?>
+                        <?php if(count($order_cart)>0):?>
+	                    <?php foreach ($order_cart as $key=>$item):?>
                             <div class="basket-card__item" data-cardid="<?=$item['id_auto']?>" data-orderid="<?=$item['id']?>">
                                 <img src="<?=BASE_URL?>/upload/assets/img/cars/<?=$item['img_preview']?>">
                                 <div class="basket-card__column">
@@ -46,15 +47,21 @@ include 'app/controllers/order/order-controller.php';
                                 <div class="basket-card__column">
                                     <span class="basket-card__price"><?=$item['price'];?>₽</span>
                                     <span class="basket-cart__status-delivery"><?=$item['name']?></span>
-                                    <?php if(!$item['status_cancel']):?>
-                                    <button type="button" class="button button-danger js-order-cancel">Отменить</button>
-                                    <?php else:?>
-                                    <button type="button" class="button button-danger button-disabled">Отменить</button>
-                                    <?php endif;?>
+				                    <?php if(!$item['status_cancel']):?>
+                                        <button type="button" class="button button-danger js-order-cancel">Отменить</button>
+				                    <?php else:?>
+                                        <button type="button" class="button button-danger button-disabled">Отменить</button>
+				                    <?php endif;?>
 
                                 </div>
                             </div>
-                        <?php endforeach;?>
+	                    <?php endforeach;?>
+                        <?php else:?>
+                            <div class="div">
+                                <div>Пожалуйста купите у нас товар(</div>
+                                <a href="<?= BASE_URL ?>catalog.php" style="margin-top: 20px;" class="button button-no-border button-primary">Каталог</a>
+                            </div>
+                        <?php endif;?>
                     </div>
                 </div>
 

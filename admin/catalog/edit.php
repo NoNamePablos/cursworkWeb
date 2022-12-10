@@ -32,7 +32,7 @@ $brands = selectAll('brand');
 						<div class="card-form-wrapper">
 							<h2 class="card-form__title title-clash title-clash-2">Редактирование автомобиля</h2>
 
-							<form action="create.php" method="post" class="card-form-form"
+							<form action="edit.php" method="post" class="card-form-form"
 							      enctype="multipart/form-data">
 								<p class="Error">
 									<?= $errMsg ?>

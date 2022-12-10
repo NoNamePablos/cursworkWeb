@@ -15,6 +15,7 @@ include 'app/controllers/users.php';
 <body>
 <div class="container">
     <?php include('app/snippets/header.php');?>
+    <?php if(!isset($_SESSION['id'])):?>
     <div class="card-form">
         <div class="card-form-wrapper">
             <h2 class="card-form__title title-clash title-clash-2">Авторизация</h2>
@@ -44,6 +45,9 @@ include 'app/controllers/users.php';
             </form>
         </div>
     </div>
+    <?php else:?>
+    <div>404</div>
+    <?php endif;?>
     <!-- Footer -->
     <?php include('app/snippets/footer.php');?>
 </div>

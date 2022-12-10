@@ -93,29 +93,16 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
 }else{
     $emails='';
 }
-if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update'])){
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings'])){
     $IdUpdate=$_SESSION['id'];
     $user=selectOne('users',['id'=>$IdUpdate]);
-    $email=trim($_POST['email']);
-    $age=trim($_POST['age']);
-    $passwordOld=trim($_POST['password-old']);
-    $passwordNew=trim($_POST['password-new']);
-    if($email!=$user['email']){
-        update('users',$IdUpdate,['email'=>$email]);
-    }
-    if($age!=$user['age']&&is_numeric($age)&&$age>0){
-        update('users',$IdUpdate,['age'=>$age]);
-    }
-    if($email!=$user['email']){
-        update('users',$IdUpdate,['email'=>$email]);
-    }
+    $passwordOld=trim($_POST['old_password']);
+    $passwordNew=trim($_POST['new_password']);
     if(password_verify($passwordOld,$user['password'])){
         $setPassword=$password=password_hash($passwordNew,PASSWORD_DEFAULT);
         update('users',$IdUpdate,['password'=>$setPassword]);
+	    header('location: /');
     }
-}else{
-    $email='';
-
 }
 if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-newpass'])){
     $email=$_POST['email'];

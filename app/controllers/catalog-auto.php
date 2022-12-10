@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['append_auto'])) {
 			$errMsg = "Уккщк";
 		}
 	}
-	if ($full_name === "" || $brand_selected === "" || is_numeric($engine_power)||$engine===""||$transmission===""||$privod===""||$description===""||!is_numeric($price) || !is_numeric($year)) {
+	if ($full_name === "" || $brand_selected === "" || !is_numeric($engine_power)||$engine===""||$transmission===""||$privod===""||$description===""||!is_numeric($price) || !is_numeric($year)) {
 		$errMsg = "Не все поля заполнены !";
 	} else {
 		$arrData = [
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_auto'])) {
 			$errMsg = "Уккщк";
 		}
 	}
-	if ($full_name === "" || $brand_selected === "" || is_numeric($engine_power)||$engine===""||$transmission===""||$privod===""||$description===""||!is_numeric($price) || !is_numeric($year)) {
+	if ($full_name === "" || $brand_selected === "" || !is_numeric($engine_power)||$engine===""||$transmission===""||$privod===""||$description===""||!is_numeric($price) || !is_numeric($year)) {
 		$errMsg = "Не все поля заполнены !";
 	} else {
 		$arrData = [

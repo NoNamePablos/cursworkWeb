@@ -137,7 +137,7 @@ if(document.querySelector('.js-remove-all')){
             },
             success: function (data) {
                 document.querySelector(".basket-price__total").textContent=`${data}₽`;
-                removeAll();
+                // removeAll();
             }
         });
     });
@@ -161,11 +161,7 @@ if(document.querySelectorAll('.js-order-cancel').length>0){
                 },
                 success: function (data) {
                    alert('Отменено');
-                   el.classList.add('button-disabled');
-                   el.classList.remove('js-order-cancel');
-                   const status=parent.querySelector('.basket-cart__status-delivery');
-                   status.textContent=`Отменено`;
-                   status.classList.add('basket-cart__status-delivery-cancel');
+                    parent.remove();
                 }
             });
         });
@@ -263,6 +259,8 @@ if(document.querySelector('.js-cart-basket')){
             success: function (data) {
                 alert('Ожидайте доставки');
                 removeAll();
+                let det= document.querySelector('.detail-body-close');
+                det.classList.remove('detail-body-hidden');
             }
         });
     })
@@ -411,11 +409,9 @@ if(document.querySelector('.button-filter')) {
     })
 }
 function removeAll(){
-    const parent=document.querySelector('.js-cart-basket');
+    const parent=document.querySelector('.detail-body');
     let count=document.querySelector('.basket-count');
-    parent.forEach((el)=>{
-        el.remove();
-    });
+
     parent.classList.add('detail-body-hidden');
     count.textContent=`В корзине ${0} товаров`;
 }

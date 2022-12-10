@@ -176,22 +176,33 @@ include 'app/controllers/cart/cart-controller.php'
                         <span><?= $auto['price'] ?></span>
                         <span>₽</span>
                     </div>
-                    <div class="detail-payment-availabile">В наличие</div>
+	                <?php if($auto['status']):?>
+                    <div class="detail-payment-availabile">В наличии</div>
+	                <?php else :?>
+                    <div class="detail-payment-availabile">Нет в наличии</div>
+	                <?php endif;?>
                     <div class="detail-payment-buttons">
-                        <?php if(!itemInCart($auto['id'])||isset($_SESSION['id'])):?>
-                        <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
-                            Добавить в избранное
-                        </button>
+                        <?php if($auto['status']):?>
+	                        <?php if(!itemInCart($auto['id'])||isset($_SESSION['id'])):?>
+                                <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
+                                    Добавить в избранное
+                                </button>
+	                        <?php else :?>
+                                <button data-carid="<?=$auto['id']?>" class="button-disabled button button-no-border button-primary">
+                                    Добавить в избранное
+                                </button>
+	                        <?php endif;?>
                         <?php else :?>
-                        <button data-carid="<?=$auto['id']?>" class="button-disabled button button-no-border button-primary">
-                            Добавить в избранное
-                        </button>
-                        <?php endif;?>
+                            <button  class="button-disabled button button-no-border button-primary">
+                                Добавить в избранное
+                            </button>
+                            <?php endif?>
+
                         <button class="button button-no-border button-dark-purple js-animation">
                             Смотреть отзывыв
                         </button>
 	                    <?php if($_SESSION['admin']):?>
-                        <a class="button button-primary" href="<?BASE_URL?>admin/catalog/edit.php?edit_id=<?= $auto['id']; ?>">Редактировать</a>
+                        <a class="button button-no-border button-primary" href="<?BASE_URL?>admin/catalog/edit.php?edit_id=<?= $auto['id']; ?>">Редактировать</a>
 	                    <?php endif;?>
                     </div>
                 </div>

@@ -22,8 +22,15 @@ if (isset($_POST['username']) && isset($_POST['telephone']) && isset($_POST['id_
                 'id_status'=>$status['id'],
             ];
 	        $arrdta1=$arrData;
+	        foreach ($_SESSION['favourites'] as $key => $value1) {
+		        if ($value == $value1) {
+			        unset($_SESSION['favourites'][$key]);
+		        }
+	        }
             $lastId = insert('cart_order', $arrData);
         }
+
+		header('location: ' . BASE_URL . 'catalog.php');
     }
     echo 1;
     exit();
@@ -31,7 +38,7 @@ if (isset($_POST['username']) && isset($_POST['telephone']) && isset($_POST['id_
 if(isset($_POST['order_cancel'])&&isset($_POST['id'])){
 	global $pdo;
 	$id = $_POST['id'];
-	update('cart_order',$id,['id_status'=>4,'status_cancel'=>1]);
+	delete('cart_order',$id);
 	echo 1;
 	exit();
 }
