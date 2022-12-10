@@ -31,47 +31,30 @@ include '../../app/controllers/brand-controller.php';
                 <div class="admin-form">
                     <div class="card-form">
                         <div class="card-form-wrapper">
-                            <h2 class="card-form__title title-clash title-clash-2">Редактирование пользователя</h2>
+                            <h2 class="card-form__title title-clash title-clash-2">Редактирование бренда</h2>
 
                             <form action="create.php" method="post" class="card-form-form">
                                 <p class="Error">
 									<?= $errMsg ?>
                                 </p>
                                 <div class="card-form-form__item">
-                                    <input type="hidden" name="id" value="<?= $id; ?>" ">
+                                    <input type="hidden" name="id-brand" value="<?= $id_brand; ?>" ">
                                     <div class="input-label">
-                                        <input type="text" name="login" placeholder="Введите login"
-                                               class="input-label__input input" value="<?= $login ?>">
+                                        <input type="text" name="name" placeholder="Введите название бренда"
+                                               class="input-label__input input" value="<?= $name ?>">
                                     </div>
                                 </div>
                                 <div class="card-form-form__item">
                                     <div class="input-label">
-                                        <input type="text" name="email" placeholder="Введите email"
-                                               class="input-label__input input" value="<?= $email ?>">
+                                        <input type="text" name="country" placeholder="Введите город\страну"
+                                               class="input-label__input input" value="<?= $country ?>">
                                     </div>
                                 </div>
+
                                 <div class="card-form-form__item">
-                                    <div class="input-label">
-                                        <input type="password" name="password-first" placeholder="Введите пароль"
-                                               class="input-label__input input">
-                                    </div>
-                                </div>
-                                <div class="card-form-form__item">
-                                    <div class="input-label">
-                                        <input type="password" name="password-second" placeholder="Повторите пароль"
-                                               class="input-label__input input">
-                                    </div>
-                                </div>
-                                <div class="card-form-form__item">
-                                    <label for="value-admin" class="filter-card-checkbox custom-checkbox">
-                                        <input type="checkbox" name="admin" value="1" id="value-admin">
-                                        <span>Админ?</span>
-                                    </label>
-                                </div>
-                                <div class="card-form-form__item">
-                                    <button name="btn-edit-admin" type="submit"
+                                    <button name="btn-edit-brand-admin" type="submit"
                                             class="card-form-form__button button button-dark-purple button-no-border">
-                                        Редактирова
+                                        Редактировать
                                     </button>
                                 </div>
                             </form>

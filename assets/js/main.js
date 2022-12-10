@@ -353,10 +353,11 @@ function catalogFilter(){
                 cards.forEach((el)=>{
                     el.remove();
                 })
-                if(list.length>6){
+                if(list.length<6){
                     catalogList=list;
                     $("#goods-template").tmpl(list.slice(0,6)).appendTo(".catalog-grid");
                     catalogList=catalogList.slice(6,catalogList.length);
+                }else{
                     console.log('ddd');
                     console.log(catalogList);
                     $("#hidden-template").tmpl(catalogList).appendTo(".catalog-grid");

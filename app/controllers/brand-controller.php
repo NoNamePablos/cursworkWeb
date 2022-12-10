@@ -30,9 +30,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-registration-bran
 	}
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-edit-brand-admin'])) {
+	$name = trim($_POST['name']);
+	$country = trim($_POST['country']);
+	$id = $_POST['id-brand'];
+	if ($name === "" || $country === "") {
+		$errMsg = "Не все поля заполнены !";
+	} elseif (mb_strlen($name, 'UTF8') < 2) {
+		$errMsg = "Название не может быть меньше 2-х символов!ы";
+	} else {
+			$arrData = [
+				'name' => $name,
+				'country' => $country,
+			];
+			$id = updateBrand('brand',$id, $arrData);
+			header('location: ' . BASE_URL . 'admin/brand/index.php');
+	}
 }
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {
+	$brand = selectOne('brand', ['id' => $_GET['edit_id']]);
+	$id_brand =$_GET['edit_id'];
+	$name = trim($brand['name']);
+	$country = trim($brand['country']);
+}
+
+
 
 //Удаление через админку
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {

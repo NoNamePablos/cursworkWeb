@@ -117,6 +117,28 @@ function  update($table,$id,$params){
     dbCheckError($query);
 
 }
+function  updateBrand($table,$id,$params){
+	global  $pdo;
+	$i=0;
+	$str='';
+
+	foreach ($params as $key =>$value){
+		if($i===0){
+			$str=$str. $key ." = '".$value."'";
+		}else{
+
+			$str=$str. ", ".$key ." = '".$value."'";
+		}
+
+		$i++;
+	}
+	$sql="UPDATE $table SET $str WHERE id = '$id' ";
+	$query=$pdo->prepare($sql);
+
+	$query->execute($params);
+	dbCheckError($query);
+
+}
 //Обновить в бд
 function updateOrder($table, $id, $params){
     global  $pdo;
