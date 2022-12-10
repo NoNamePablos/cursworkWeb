@@ -1,3 +1,5 @@
+
+//Выпадющие менюшки у фильтра
 if (document.querySelector(".catalog-form")) {
     const filterCards = document.querySelectorAll(".filter-card");
     filterCards.forEach(el => {
@@ -7,6 +9,7 @@ if (document.querySelector(".catalog-form")) {
         })
     })
 }
+//slider
 if (document.querySelector(".js-slider")) {
     const slider = document.querySelector(".js-slider");
     var swiper = new Swiper(slider, {
@@ -21,6 +24,7 @@ if (document.querySelector(".js-slider")) {
     });
 }
 
+//burger
 if (document.querySelector(".js-popup")) {
     const mobilePopup = document.querySelector(".js-popup");
     const mobileMenu = document.querySelector(".js-mobile");
@@ -33,7 +37,7 @@ if (document.querySelector(".js-popup")) {
         })
     }
 }
-
+//Анимация плавной прокрутки
 if (document.querySelector('.js-animation')) {
     $(".js-animation").click(function () {
         $('html, body').animate({
@@ -41,23 +45,26 @@ if (document.querySelector('.js-animation')) {
         }, 2000);
     });
 }
+//добавить отзыв
 if (document.querySelector('.js-append-review')) {
-    $('.js-append-review').on('click', function (event) { //Trigger on form submit
-        var postForm = { //Fetch form data
+    $('.js-append-review').on('click', function (event) {
+        //парсим все данные из формы
+        var postForm = {
             'id_auto': $('.input-auto').val(),
             'id': $('.input-user').val(),
-            'score_scope': $('.input-score').val(), //Store name fields value
+            'score_scope': $('.input-score').val(),
             'review_positiv_text': $('.js-positiv-text').val(),
             'review_negative_text': $('.js-negativ-text').val(),
         };
         if (!($('.input-score').val() > 5 || $('.input-score').val() <= 0)) {
             if (!($('.js-positiv-text').val().length === 0) && !($('.js-negativ-text').val().length === 0)) {
-                $.ajax({ //Process the form using $.ajax()
-                    type: 'POST', //Method type
-                    url: 'app/controllers/review-ajax.php', //Your form processing file URL
-                    data: postForm, //Forms name
+                $.ajax({
+                    type: 'POST', //Тип запроса POST-Добавить
+                    url: 'app/controllers/review-ajax.php', //Путь к файлу где будет обработка запроса
+                    data: postForm, //Данные для обработки
                     dataType: 'html',
                     success: function (data) {
+                        //Действия если данные пришли успешно
                         $('.input-score').val(1);
                         $('.js-positiv-text').val("");
                         $('.js-negativ-text').val("");
@@ -72,25 +79,29 @@ if (document.querySelector('.js-append-review')) {
     });
 }
 
-
+//удаления комментария с детальной
 if (document.querySelectorAll('.js-review-close').length > 0) {
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('js-review-close')) {
             const parent = e.target.closest(".review-card");
             $.ajax({
-                url: 'app/controllers/review-ajax.php',
-                type: 'post',
+                url: 'app/controllers/review-ajax.php',//путь к файлу где будет обработка  запроса
+                type: 'post',//метод
                 dataType: 'json',
                 data: {
-                    'id_comment': parent.getAttribute("data-commentid"),
+                    'id_comment': parent.getAttribute("data-commentid"),//отправляем дял удаления только id комментария
                 },
                 success: function (data) {
-                    parent.remove();
+                    parent.remove();//Удаляем коммент на фронте
                 }
             });
         }
     });
 }
+
+//Добавить в корзину(избранное) это кнопка на странице детальной  авто,
+// по сути получаем id авто и отравляем POST зпрос для добавления,выше есть примеры по структуре
+//Если успех пользователю выкидываем alert и блокируем кнопку
 if(document.querySelector('.js-cart')){
     const btn=document.querySelector('.js-cart');
     btn.addEventListener('click',()=>{
@@ -109,6 +120,10 @@ if(document.querySelector('.js-cart')){
         btn.classList.add('button-disabled');
     })
 }
+//Удаление из корзины
+//Тут всё просто при нажатии на кнопку отправляем POST запрос с параметром который говорит
+//удали все из моей корзины,корзина реализована в сессии без бд.Потому что нет смысла для каждого раза хранить данные в корзине
+//Вообще тут ещё по хорошему нужен localStorage)Ну и хрен с ним)
 if(document.querySelector('.js-remove-all')){
     const btn=document.querySelector('.js-remove-all');
     const parent=document.querySelectorAll('.basket-card__item');
@@ -128,6 +143,8 @@ if(document.querySelector('.js-remove-all')){
     });
 
 }
+//страгица доставки,при клике на кнопку отменить заказ,отправляем POST запрос
+//в котором отдаём id авто для которого нужно отменить доставку,ну и параметр для проверки
 if(document.querySelectorAll('.js-order-cancel').length>0){
     const btn=document.querySelectorAll('.js-order-cancel');
     btn.forEach((el)=>{
@@ -156,6 +173,10 @@ if(document.querySelectorAll('.js-order-cancel').length>0){
     const parent=document.querySelectorAll('.basket-card__item');
 
 }
+
+
+//удаление из корзины по 1 штучке и обновление цены
+//Особо тут расписывать нет смысла,см комменты выше
 if(document.querySelectorAll('.js-remove').length>0){
     const btn=document.querySelectorAll('.js-remove');
 
@@ -196,6 +217,7 @@ if(document.querySelectorAll('.js-remove').length>0){
         })
     })
 }
+//Скрыть форму заказа на стр корзины
 if(document.querySelector('.js-cart-form')){
     const btn=document.querySelector('.js-cart-form');
     const parent=document.querySelector('.js-cart-basket');
@@ -216,7 +238,8 @@ if(document.querySelector('.js-cart-form')){
         }
     })
 }
-
+//Отпарвить форму заказа на сервер,после добавления в корзину авто,появлется форма,добавлеям туда данные
+// о заказе и отправляем этот код чисто отпаравка на сервере этих данных
 if(document.querySelector('.js-cart-basket')){
     const btn=document.querySelector('.js-cart-basket-button');
     btn.addEventListener('click',()=>{
@@ -245,7 +268,7 @@ if(document.querySelector('.js-cart-basket')){
     })
 }
 let catalogList=[];
-
+//Фильтр и отпарвка данных
 function catalogFilter(){
     let form={
         brands_wrap:'.filter-card-brand',
@@ -306,7 +329,15 @@ function catalogFilter(){
         }
     })
 
-    console.log(form_value);
+    //Здесь всё тоже самое,только когда вернулся ответ с бекенда мы отрисовываем
+    // шаблон goods-template и hidden-template крч эти шаблоны внизу стр catalog.php
+    // Более детально https://habr.com/ru/post/112843/
+    // или https://professorweb.ru/my/javascript/jquery/level3/3_1.php это статьи связанные с шаблонами
+    // и в частности с функции tmpl
+    //Просто в те времена когда я свой курсач делал,я вообще не бомбом как их юзать и кусок html отдавал в js))))
+    // А когда тебе делал нашёл шаблоны))Текущая реализация тоже костыльная но это лучше чем отдавать захардкоженный html из js
+
+
     $.ajax({ //Process the form using $.ajax()
         type: 'GET', //Method type
         url: 'app/controllers/catalog/catalog-ajax.php', //Your form processing file URL
@@ -335,6 +366,8 @@ function catalogFilter(){
     });
 
 }
+
+//Классическая кнопка "Показать больше" для каталога
 if(document.querySelector('.js-show-more-catalog')){
     let btn=document.querySelector('.js-show-more-catalog');
     btn.addEventListener('click',()=>{
@@ -354,7 +387,7 @@ if(document.querySelector('.js-show-more-catalog')){
 
 
 
-
+//Обработчки кнопки "Фильтр"
 if(document.querySelector('.button-filter')) {
     const filter = document.querySelector('.button-filter');
     filter.addEventListener('click', () => {
