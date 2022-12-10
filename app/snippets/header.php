@@ -40,10 +40,7 @@
                 <?php endif;?>
 
                 <li class="header__user-menu-item header__user-menu-mobile">
-                    <a href="" class="header__user-menu-link">Каталог</a>
-                </li>
-                <li class="header__user-menu-item">
-                    <a href="" class="header__user-menu-link">Настройки</a>
+                    <a href="<?=BASE_URL?>catalog.php" class="header__user-menu-link">Каталог</a>
                 </li>
                 <li class="header__user-menu-item">
                     <a href="<?=BASE_URL?>logout.php" class="header__user-menu-link">Выход</a>

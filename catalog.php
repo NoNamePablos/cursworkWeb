@@ -57,32 +57,7 @@ include 'app/controllers/catalog-filter.php'
                   </div>
                 </div>
               </div>
-              <div class="filter-card">
-                <div class="filter-card__header">
-                  <p class="filter-card__title">Наличие</p>
-                  <i class="filter-card__ico" aria-hidden="true"
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="5"
-                      height="3"
-                      viewBox="0 0 5 3">
-                      <path
-                        class="cls-1"
-                        d="M250,80h5l-2.5,3Z"
-                        transform="translate(-250 -80)"></path></svg
-                  ></i>
-                </div>
-                <div class="filter-card__body">
-                  <div class="filter-card__wrapper filter-card-flex">
-                    <label
-                      for="value-5"
-                      class="filter-card-checkbox custom-checkbox">
-                      <input type="checkbox" id="value-5" />
-                      <span>Наличие</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
+
               <div class="filter-card">
                 <div class="filter-card__header">
                   <p class="filter-card__title">Цена</p>
@@ -189,9 +164,10 @@ include 'app/controllers/catalog-filter.php'
                             </div>
                         </li>
 			        <?php endforeach; ?>
+                    <!--Pagination-->
+	                <?php include("app/snippets/pagination.php") ?>
                 </ul>
-                <!--Pagination-->
-		        <?php include("app/snippets/pagination.php") ?>
+
             </section>
         </div>
       </div>

@@ -70,7 +70,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
         $errMsg="Не все поля заполнены !";
     }else{
         $checkAuthMail=selectOne('users',['email'=>$emails]);
-        var_dump($checkAuthMail);
+
         if($checkAuthMail && password_verify($passwordS,$checkAuthMail['password'])){
             $_SESSION['id']=$checkAuthMail['id'];
             $_SESSION['login']=$checkAuthMail['login'];

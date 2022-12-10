@@ -4,7 +4,7 @@ if(isset($_SESSION['id'])){
 }
 if(isset($_SESSION['admin'])){
 	$order_cartAdmins=selectAllOrder('cart_order','users','cart_status','automobile');
-	var_dump($order_cartAdmins);
+
 }
 if($_SERVER['REQUEST_METHOD']==='GET'&&isset($_GET['edit_id'])){
 	$order=selectOne('cart_order',['id'=>$_GET['edit_id']]);

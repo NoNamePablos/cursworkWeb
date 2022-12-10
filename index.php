@@ -249,49 +249,6 @@ include 'app/controllers/catalog-auto.php';
         >
       </div>
       <!-- БЛОК ПОСЛЕДНИХ НОВОСТЕЙ,НО ПОКА НЕ БУДУ ДЕЛАТЬ -->
-      <!-- Подписка -->
-      <div class="sign-up">
-        <div class="sign-up__container">
-          <h2 class="title-clash title-clash-2 sign-up__title">
-            Присоединяйтесь к клубу и получайте преимущества
-          </h2>
-          <p
-            class="title-satoshi title-satoshi-body-large sign-up__description">
-            Подпишитесь на нашу рассылку и получайте эксклюзивные предложения по
-            новым ассортиментам, распродажам и многому другому
-          </p>
-          <ul class="sign-up__benefits">
-            <li class="sign-up__benefits-item">
-              <img src="./assets/img/UI/Checkmark.svg" alt="" />
-              <p class="title-satoshi sign-up__benefits__description">Скидки</p>
-            </li>
-            <li class="sign-up__benefits-item">
-              <img src="./assets/img/UI/Checkmark.svg" alt="" />
-              <p class="title-satoshi sign-up__benefits__description">
-                Эксклюзивные предложения
-              </p>
-            </li>
-            <li class="sign-up__benefits-item">
-              <img src="./assets/img/UI/Checkmark.svg" alt="" />
-              <p class="title-satoshi sign-up__benefits__description">
-                Закрытый клуб
-              </p>
-            </li>
-          </ul>
-
-          <form class="sign-up__form form-subscribe">
-            <div class="input-label">
-              <input
-                type="email"
-                class="input-label__input input"
-                placeholder="email@example.com" />
-            </div>
-            <button type="submit" class="sign-up__button button button-danger">
-              <span>Sign up</span>
-            </button>
-          </form>
-        </div>
-      </div>
       <!-- Footer -->
         <?php include('app/snippets/footer.php');?>
     </div>

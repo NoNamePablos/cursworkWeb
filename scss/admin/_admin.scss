@@ -1,13 +1,37 @@
 .admin{
 	width: 100%;
-
+	&-table{
+		@media screen and (max-width:1280px) {
+			overflow-x: auto;
+		}
+		&__title{
+			-ms-text-overflow: ellipsis;
+			-o-text-overflow: ellipsis;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			-ms-line-clamp: 1;
+			-webkit-line-clamp: 1;
+			line-clamp: 1;
+			display: -webkit-box;
+			display: box;
+			word-wrap: break-word;
+			-webkit-box-orient: vertical;
+			box-orient: vertical;
+		}
+	}
 	&-container{
 	  width: 100%;
 	  display: grid;
 	  grid-template-columns: 1fr 5fr;
+		@media screen and (max-width:1280px) {
+			grid-template-columns: 1fr;
+		}
 	  grid-column-gap: 25px;
 	  padding: 100px 50px 50px;
 	  height: 100%;
+		@media screen and (max-width:768px) {
+			padding: 25px;
+		}
 	}
   	&-wrapper{
 	  width: 100%;
@@ -15,6 +39,16 @@
 	  grid-template-columns: 1fr;
 	  grid-auto-rows: max-content;
 	  grid-row-gap: 25px;
+		@media screen and (max-width:1280px) {
+			margin-top: 25px;
+		}
+	}
+	&-form{
+		& .card-form-form{
+			@media screen and (max-width:768px) {
+				max-width: initial;
+			}
+		}
 	}
   	&-manage{
 		width: 100%;

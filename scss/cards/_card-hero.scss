@@ -11,6 +11,7 @@
         height: max-content;
         width: 100%;
         height: 100%;
+        padding: 30px;
     }
     &-container {
         width: 100%;
@@ -32,6 +33,12 @@
         font-size: 32px;
         line-height: 45px;
         color: var(--color-title);
+        @media screen and (max-width: 767px) {
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+        }
+
     }
     &__description {
         margin-top: 10px;
@@ -41,6 +48,9 @@
         font-size: 18px;
         line-height: 27px;
         color: #5B5676;
+        @media screen and (max-width: 767px) {
+         text-align: center;
+        }
     }
     &__button {
         display: block;
@@ -56,5 +66,8 @@
         }
         margin-top: 32px;
         margin-bottom: 32px;
+        @media screen and (max-width: 767px) {
+         margin: 32px auto;
+        }
     }
 }
