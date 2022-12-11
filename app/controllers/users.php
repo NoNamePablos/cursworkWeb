@@ -118,19 +118,18 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-reset-pass'])){
         }else{
             echo 'Error';
         }
-        header('location: /');
+		header('location: /');
     }
 
 }
 //Обновление пароля в бд + удаление секретногочисла
 if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['btn-update-pass'])){
-    $secretkey=$_GET['key'];
+    $secretkey=$_GET['key_value'];
     $user=selectOne('users',['change_key'=>$secretkey]);
     if($user){
         $password=$_GET['new_password'];
         update('users',$user['id'],['password'=>password_hash($password,PASSWORD_DEFAULT),'change_key'=>'NULL']);
-        header('location: /');
-
+		header('location: /');
     }
 
 }
@@ -222,6 +221,13 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST['btn-edit-admin'])){
         header('location: '.BASE_URL . 'admin/users/index.php');
     }
 
+}
+if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['key'])){
+	$secretkey=$_GET['key'];
+	$user=selectOne('users',['change_key'=>$secretkey]);
+	if(!$user){
+		header('location: /');
+	}
 }
 
 

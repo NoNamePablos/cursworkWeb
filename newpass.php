@@ -23,7 +23,7 @@ include 'app/controllers/users.php';
 				<p class="Error">
 					<?=$errMsg?>
 				</p>
-				<input type="hidden" name="key" value="<?=$_GET['key']?>">
+				<input type="hidden" name="key_value" value="<?=$_GET['key']?>">
 				<div class="card-form-form__item">
 					<div class="input-label">
 						<input type="password" name="new_password" placeholder="Введите новый пароль" class="input-label__input input">
@@ -32,7 +32,6 @@ include 'app/controllers/users.php';
 				<div class="card-form-form__item">
 					<button name="btn-update-pass" type="submit" class="card-form-form__button button button-dark-purple button-no-border">Востановить</button>
 				</div>
-
 			</form>
 		</div>
 	</div>
