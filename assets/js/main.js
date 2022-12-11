@@ -398,8 +398,20 @@ if(document.querySelector('.js-show-more-catalog')){
     })
 }
 
-
-
+if(document.querySelector('.js-button-reset')){
+    const button=document.querySelector('.js-button-reset');
+    const buttonAuth=document.querySelector('.js-button-auth');
+    const authForm=document.querySelector('.card-form-auth');
+    const resetForm=document.querySelector('.card-form-reset');
+    button.addEventListener('click',()=>{
+        authForm.classList.add('hidden');
+        resetForm.classList.remove('hidden');
+    })
+    buttonAuth.addEventListener('click',()=>{
+        authForm.classList.remove('hidden');
+        resetForm.classList.add('hidden');
+    })
+}
 
 //Обработчки кнопки "Фильтр"
 if(document.querySelector('.button-filter')) {

@@ -104,17 +104,15 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings'])){
 	    header('location: /');
     }
 }
-if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-newpass'])){
+//Модуль с вост пароля
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-reset-pass'])){
     $email=$_POST['email'];
     $user=selectOne('users',['email'=>$email]);
-
-
     if($email===$user['email']){
-        showArr($user);
         $securitykey=md5(rand(1000,100000));
         update('users',$user['id'],['change_key'=>$securitykey]);
-        $url='http://kursweb/newpass.php?key='.$securitykey;
-        $message=$user['login'].", был отправлен запрос на востановление пароля!!Для востановления пройлите по ссылке : ". $url." \n";
+        $url=BASE_URL.'newpass.php?key='.$securitykey;
+        $message=$user['login'].", был отправлен запрос на востановление пароля!!Для востановления пройдите по ссылке : ". $url." \n";
         if(mail($user['email'],"Подтвердить действие",$message)){
             showArr($user['email']);
         }else{
@@ -124,11 +122,12 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-newpass'])){
     }
 
 }
-if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['btn-reset'])){
-    $seckey=$_GET['key'];
-    $user=selectOne('users',['change_key'=>$seckey]);
+//Обновление пароля в бд + удаление секретногочисла
+if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['btn-update-pass'])){
+    $secretkey=$_GET['key'];
+    $user=selectOne('users',['change_key'=>$secretkey]);
     if($user){
-        $password=$_GET['password'];
+        $password=$_GET['new_password'];
         update('users',$user['id'],['password'=>password_hash($password,PASSWORD_DEFAULT),'change_key'=>'NULL']);
         header('location: /');
 
