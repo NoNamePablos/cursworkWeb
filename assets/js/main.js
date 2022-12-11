@@ -137,7 +137,10 @@ if(document.querySelector('.js-remove-all')){
             },
             success: function (data) {
                 document.querySelector(".basket-price__total").textContent=`${data}₽`;
-                // removeAll();
+                parent.forEach((item)=>{
+                    item.remove();
+                })
+                document.querySelector('.basket-count').textContent=`В корзине ${0} товаров`;
             }
         });
     });
