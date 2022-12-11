@@ -3,7 +3,9 @@
 $isSubmit=false;
 $errMsg='';
 $users_admin=selectAll('users');
-
+if(isset($_SESSION['id'])){
+	$userSetting=selectOne('users',['id'=>$_SESSION['id']]);
+}
 if($_SERVER['REQUEST_METHOD']==='POST' && (isset($_POST['btn-registration'])||isset($_POST['btn-registration-admin']))){
     $login=trim($_POST['login']);
     $email=trim($_POST['email']);
@@ -101,8 +103,29 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings'])){
     if(password_verify($passwordOld,$user['password'])){
         $setPassword=$password=password_hash($passwordNew,PASSWORD_DEFAULT);
         update('users',$IdUpdate,['password'=>$setPassword]);
-	    header('location: /');
+
     }
+}
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings-login'])){
+	$IdUpdate=$_SESSION['id'];
+	$user=selectOne('users',['id'=>$IdUpdate]);
+	$password=trim($_POST['password']);
+	$email=trim($_POST['login']);
+	if(password_verify($password,$user['password'])){
+		update('users',$IdUpdate,['login'=>$email]);
+		$_SESSION['login']=$email;
+
+	}
+}
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings-email'])){
+	$IdUpdate=$_SESSION['id'];
+	$user=selectOne('users',['id'=>$IdUpdate]);
+	$password=trim($_POST['password']);
+	$email=trim($_POST['email']);
+	if(password_verify($password,$user['password'])){
+		update('users',$IdUpdate,['email'=>$email]);
+
+	}
 }
 //Модуль с вост пароля
 if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-reset-pass'])){

@@ -427,3 +427,14 @@ function removeAll(){
     parent.classList.add('detail-body-hidden');
     count.textContent=`В корзине ${0} товаров`;
 }
+
+
+if(document.querySelectorAll('.js-button-setting').length>0){
+    const buttons=document.querySelectorAll('.js-button-setting');
+    buttons.forEach((button)=>{
+        const form=document.querySelector(button.getAttribute("data-form"));
+        button.addEventListener('click',()=>{
+            form.classList.toggle('hidden');
+        })
+    })
+}
