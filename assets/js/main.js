@@ -364,9 +364,9 @@ function catalogFilter(){
                         }
                     }
                 }else{
-                    let div=document.createElement('div');
-                    div.innerText=`Пусто(`;
-                    document.querySelector('.catalog-grid').appendChild(div);
+                    // let div=document.createElement('div');
+                    // div.innerText=`Пусто(`;
+                    // document.querySelector('.catalog-grid').appendChild(div);
                 }
 
                 // if(list.length<=6){
