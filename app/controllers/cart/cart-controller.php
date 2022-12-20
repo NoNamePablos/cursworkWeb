@@ -14,10 +14,12 @@ if(isset($_SESSION['favourites'])){
 
 
 function itemInCart($id){
-    if(count($_SESSION['favourites'])>0){
-        foreach ($_SESSION['favourites'] as $key => $value) {
-            if ($value ==$id) {
-                return true;
+    if(isset($_SESSION['favourites'])){
+        if(count($_SESSION['favourites'])>0){
+            foreach ($_SESSION['favourites'] as $key => $value) {
+                if ($value ==$id) {
+                    return true;
+                }
             }
         }
     }

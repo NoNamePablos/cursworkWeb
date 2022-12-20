@@ -183,7 +183,7 @@ include 'app/controllers/cart/cart-controller.php'
 	                <?php endif;?>
                     <div class="detail-payment-buttons">
                         <?php if($auto['status']):?>
-	                        <?php if(!itemInCart($auto['id'])||isset($_SESSION['id'])):?>
+	                        <?php if(!itemInCart($auto['id'])&&isset($_SESSION['id'])):?>
                                 <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
                                     Добавить в избранное
                                 </button>

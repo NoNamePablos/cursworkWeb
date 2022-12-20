@@ -354,6 +354,7 @@ function catalogFilter(){
                 cards.forEach((el)=>{
                     el.remove();
                 })
+                clearAll('.catalog-grid>*');
                 if(list.length!=0){
                     for(let i=0;i<list.length;i++){
                         if(i<6){
@@ -382,6 +383,12 @@ function catalogFilter(){
         }
     });
 
+}
+function clearAll(selector){
+    let sel=document.querySelectorAll(selector);
+    sel.forEach((el)=>{
+        el.remove();
+    })
 }
 
 //Классическая кнопка "Показать больше" для каталога
