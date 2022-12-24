@@ -12,12 +12,21 @@ if(isset($_SESSION['favourites'])){
     $_SESSION['totalPrice']=$totalPrice;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['car_id'])) {
+    $auto = selectOne('automobile', ['id' => $_GET['car_id']]);
+    $id_car = $auto['id'];
+    $full_name_car = trim($auto['full_name']);
+    $price_car = trim($auto['price']);
+    $year_car = trim($auto['year']);
+}
 
 function itemInCart($id){
-    if(count($_SESSION['favourites'])>0){
-        foreach ($_SESSION['favourites'] as $key => $value) {
-            if ($value ==$id) {
-                return true;
+    if(isset($_SESSION['favourites'])){
+        if(count($_SESSION['favourites'])>0){
+            foreach ($_SESSION['favourites'] as $key => $value) {
+                if ($value ==$id) {
+                    return true;
+                }
             }
         }
     }

@@ -129,8 +129,11 @@ include 'app/controllers/cart/cart-controller.php'
                                     </div>
                                 </div>
 							<?php else: ?>
-                                <a class="button button-danger"
+                                <div style="margin: 10px 0 20px">
+                                <p>Вы не авторизованы, поэтому не можете оставлять отзывы!</p>
+                                <a style="text-decoration:underline"
                                    href="<?= BASE_URL ?>authorization.php">Авторизация</a>
+                                </div>
 							<?php endif; ?>
                         </div>
                         <div class="detail-body__item-body">
@@ -176,20 +179,34 @@ include 'app/controllers/cart/cart-controller.php'
                         <span><?= $auto['price'] ?></span>
                         <span>₽</span>
                     </div>
-                    <div class="detail-payment-availabile">В наличие</div>
+	                <?php if($auto['status']):?>
+                    <div class="detail-payment-availabile">В наличии</div>
+	                <?php else :?>
+                    <div class="detail-payment-availabile">Нет в наличии</div>
+	                <?php endif;?>
                     <div class="detail-payment-buttons">
-                        <?php if(!itemInCart($auto['id'])):?>
-                        <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
-                            Добавить в избранное
-                        </button>
-                        <?php else:?>
-                        <button data-carid="<?=$auto['id']?>" class="button-disabled button button-no-border button-primary">
-                            Добавить в избранное
-                        </button>
-                        <?php endif;?>
+                        <?php if($auto['status']):?>
+	                        <?php if(!itemInCart($auto['id'])&&isset($_SESSION['id'])):?>
+                                <button data-carid="<?=$auto['id']?>" class="js-cart button button-no-border button-primary">
+                                    Добавить в избранное
+                                </button>
+	                        <?php else :?>
+                                <button data-carid="<?=$auto['id']?>" class="button-disabled button button-no-border button-primary">
+                                    Добавить в избранное
+                                </button>
+	                        <?php endif;?>
+                        <?php else :?>
+                            <button  class="button-disabled button button-no-border button-primary">
+                                Добавить в избранное
+                            </button>
+                            <?php endif?>
+
                         <button class="button button-no-border button-dark-purple js-animation">
-                            Смотреть отзывыв
+                            Смотреть отзывы
                         </button>
+	                    <?php if($_SESSION['admin']):?>
+                        <a class="button button-no-border button-primary" href="<?BASE_URL?>admin/catalog/edit.php?edit_id=<?= $auto['id']; ?>">Редактировать</a>
+	                    <?php endif;?>
                     </div>
                 </div>
             </aside>

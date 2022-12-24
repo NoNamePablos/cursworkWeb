@@ -25,6 +25,15 @@ include 'app/controllers/catalog-auto.php';
                 Исходя из ваших предпочтений будут подобраны варианты подходящих
                 автомобилей непосредственно из автосалона.
               </p>
+              <p style="margin: 20px 0 10px" class="card-info__description">
+                Наши контакты: 
+              </p>
+              <p style="margin:0" class="card-info__description">
+                Email: <a href="mailto:avionAuto@gmail.com">avionAuto@gmail.com</a>
+              </p>
+              <p class="card-info__description">
+                Telephone: <a href="tel:+1234567890">+1234567890</a>
+              </p>
             </div>
             <a href="<?= BASE_URL ?>catalog.php" class="card-info__button button button-danger"
               >Посмотреть авто</a
@@ -245,53 +254,10 @@ include 'app/controllers/catalog-auto.php';
             <?php endforeach; ?>
         </ul>
         <a href="<?= BASE_URL ?>catalog.php" class="products__button button button-danger"
-          >Смотреть католог</a
+          >Смотреть каталог</a
         >
       </div>
       <!-- БЛОК ПОСЛЕДНИХ НОВОСТЕЙ,НО ПОКА НЕ БУДУ ДЕЛАТЬ -->
-      <!-- Подписка -->
-      <div class="sign-up">
-        <div class="sign-up__container">
-          <h2 class="title-clash title-clash-2 sign-up__title">
-            Присоединяйтесь к клубу и получайте преимущества
-          </h2>
-          <p
-            class="title-satoshi title-satoshi-body-large sign-up__description">
-            Подпишитесь на нашу рассылку и получайте эксклюзивные предложения по
-            новым ассортиментам, распродажам и многому другому
-          </p>
-          <ul class="sign-up__benefits">
-            <li class="sign-up__benefits-item">
-              <img src="./assets/img/UI/Checkmark.svg" alt="" />
-              <p class="title-satoshi sign-up__benefits__description">Скидки</p>
-            </li>
-            <li class="sign-up__benefits-item">
-              <img src="./assets/img/UI/Checkmark.svg" alt="" />
-              <p class="title-satoshi sign-up__benefits__description">
-                Эксклюзивные предложения
-              </p>
-            </li>
-            <li class="sign-up__benefits-item">
-              <img src="./assets/img/UI/Checkmark.svg" alt="" />
-              <p class="title-satoshi sign-up__benefits__description">
-                Закрытый клуб
-              </p>
-            </li>
-          </ul>
-
-          <form class="sign-up__form form-subscribe">
-            <div class="input-label">
-              <input
-                type="email"
-                class="input-label__input input"
-                placeholder="email@example.com" />
-            </div>
-            <button type="submit" class="sign-up__button button button-danger">
-              <span>Sign up</span>
-            </button>
-          </form>
-        </div>
-      </div>
       <!-- Footer -->
         <?php include('app/snippets/footer.php');?>
     </div>

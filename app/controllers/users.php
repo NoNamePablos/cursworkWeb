@@ -3,7 +3,9 @@
 $isSubmit=false;
 $errMsg='';
 $users_admin=selectAll('users');
-
+if(isset($_SESSION['id'])){
+	$userSetting=selectOne('users',['id'=>$_SESSION['id']]);
+}
 if($_SERVER['REQUEST_METHOD']==='POST' && (isset($_POST['btn-registration'])||isset($_POST['btn-registration-admin']))){
     $login=trim($_POST['login']);
     $email=trim($_POST['email']);
@@ -70,7 +72,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
         $errMsg="Не все поля заполнены !";
     }else{
         $checkAuthMail=selectOne('users',['email'=>$emails]);
-        var_dump($checkAuthMail);
+
         if($checkAuthMail && password_verify($passwordS,$checkAuthMail['password'])){
             $_SESSION['id']=$checkAuthMail['id'];
             $_SESSION['login']=$checkAuthMail['login'];
@@ -80,7 +82,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
                 $_SESSION['favourites'] = array();
             }
            /* if($_SESSION['admin']){
-                header('location: /' . 'admin/fitness/index.php');
+
             }else{
                 header('location: /' );
             }*/
@@ -93,58 +95,64 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-auth'])){
 }else{
     $emails='';
 }
-if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update'])){
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings'])){
     $IdUpdate=$_SESSION['id'];
     $user=selectOne('users',['id'=>$IdUpdate]);
-    $email=trim($_POST['email']);
-    $age=trim($_POST['age']);
-    $passwordOld=trim($_POST['password-old']);
-    $passwordNew=trim($_POST['password-new']);
-    if($email!=$user['email']){
-        update('users',$IdUpdate,['email'=>$email]);
-    }
-    if($age!=$user['age']&&is_numeric($age)&&$age>0){
-        update('users',$IdUpdate,['age'=>$age]);
-    }
-    if($email!=$user['email']){
-        update('users',$IdUpdate,['email'=>$email]);
-    }
+    $passwordOld=trim($_POST['old_password']);
+    $passwordNew=trim($_POST['new_password']);
     if(password_verify($passwordOld,$user['password'])){
         $setPassword=$password=password_hash($passwordNew,PASSWORD_DEFAULT);
         update('users',$IdUpdate,['password'=>$setPassword]);
-    }
-}else{
-    $email='';
 
+    }
 }
-if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-newpass'])){
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings-login'])){
+	$IdUpdate=$_SESSION['id'];
+	$user=selectOne('users',['id'=>$IdUpdate]);
+	$password=trim($_POST['password']);
+	$email=trim($_POST['login']);
+	if(password_verify($password,$user['password'])){
+		update('users',$IdUpdate,['login'=>$email]);
+		$_SESSION['login']=$email;
+
+	}
+}
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-update-settings-email'])){
+	$IdUpdate=$_SESSION['id'];
+	$user=selectOne('users',['id'=>$IdUpdate]);
+	$password=trim($_POST['password']);
+	$email=trim($_POST['email']);
+	if(password_verify($password,$user['password'])){
+		update('users',$IdUpdate,['email'=>$email]);
+
+	}
+}
+//Модуль с вост пароля
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['btn-reset-pass'])){
     $email=$_POST['email'];
     $user=selectOne('users',['email'=>$email]);
-
-
     if($email===$user['email']){
-        showArr($user);
         $securitykey=md5(rand(1000,100000));
         update('users',$user['id'],['change_key'=>$securitykey]);
-        $url='http://kursweb/newpass.php?key='.$securitykey;
-        $message=$user['login'].", был отправлен запрос на востановление пароля!!Для востановления пройлите по ссылке : ". $url." \n";
+        $url=BASE_URL.'newpass.php?key='.$securitykey;
+        $message=$user['login'].", был отправлен запрос на востановление пароля!!Для востановления пройдите по ссылке : ". $url." \n";
         if(mail($user['email'],"Подтвердить действие",$message)){
             showArr($user['email']);
         }else{
             echo 'Error';
         }
-        header('location: /');
+		header('location: /');
     }
 
 }
-if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['btn-reset'])){
-    $seckey=$_GET['key'];
-    $user=selectOne('users',['change_key'=>$seckey]);
+//Обновление пароля в бд + удаление секретногочисла
+if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['btn-update-pass'])){
+    $secretkey=$_GET['key_value'];
+    $user=selectOne('users',['change_key'=>$secretkey]);
     if($user){
-        $password=$_GET['password'];
+        $password=$_GET['new_password'];
         update('users',$user['id'],['password'=>password_hash($password,PASSWORD_DEFAULT),'change_key'=>'NULL']);
-        header('location: /');
-
+		header('location: /');
     }
 
 }
@@ -182,7 +190,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['create-user'])){
             ];
             $id=insert('users',$arrData);
             $isSubmit=true;
-            header('location: '.BASE_URL . 'admin/fitness/index.php');
+            header('location: '.BASE_URL . 'admin/users/index.php');
         }
 
     }
@@ -236,6 +244,13 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST['btn-edit-admin'])){
         header('location: '.BASE_URL . 'admin/users/index.php');
     }
 
+}
+if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['key'])){
+	$secretkey=$_GET['key'];
+	$user=selectOne('users',['change_key'=>$secretkey]);
+	if(!$user){
+		header('location: /');
+	}
 }
 
 

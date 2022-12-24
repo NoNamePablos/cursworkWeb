@@ -9,6 +9,17 @@
     width: 100%;
 
   }
+  &-settings{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    &>*+*{
+      margin-top: 20px;
+    }
+    & *{
+      width: 100%;
+    }
+  }
   &__title{
     color: var(--dark-color);
   }
