@@ -30,6 +30,8 @@ if (isset($_POST['username']) && isset($_POST['telephone']) && isset($_POST['id_
 	        }
             $lastId = insert('cart_order', $arrData);
         }
+
+		header('location: ' . BASE_URL . 'catalog.php');
     }
     echo 1;
     exit();
